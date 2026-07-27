@@ -266,33 +266,81 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
 <!-- S0DT ÜBERLEITUNG · DIGITAL THREAD IST DIE BASIS, NICHT DIE LÖSUNG -->
 <section class="slide" id="s0dt">
   <div class="label fade-in">The Starting Point &middot; Where We Stand Today</div>
-  <h2 class="h2 fade-in">We built the content.<br>The digital thread proves it.<br><span class="red">But no one can reach it.</span></h2>
-  <p class="body fade-in" style="max-width:780px">For fifteen years the industry invested in exactly the right thing: PLM, ERP, MES, QMS &mdash; connected, versioned, traceable end to end. The <span class="hi">content exists</span>. It is documented, structured and complete. And still, every answer to a real question has to be <span class="red">assembled by hand</span>, system by system.</p>
+  <h2 class="h2 fade-in" style="margin-bottom:16px">We built the content.<br>The digital thread proves it.<br><span class="red">But no one can reach it.</span></h2>
+  <p class="body fade-in" style="max-width:780px">The thread runs <span class="hi">along</span> the lifecycle. Every real question runs <span class="red">across</span> it.</p>
 
-  <div class="grid2 fade-in" style="margin-top:32px">
-    <div style="padding:24px 26px;background:#172226;border:1px solid #233133;border-radius:10px;border-top:2px solid #00BDE3">
-      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#00BDE3;text-transform:uppercase">What the digital thread solved</div>
-      <div style="margin-top:16px;font-size:13.5px;color:#C6D2D8;line-height:1.9">
-        <div>Data connected along the lifecycle</div>
-        <div>Versioned, traceable, auditable</div>
-        <div>One source of truth <span style="color:#7A7D85">per object</span></div>
-        <div>The <span class="hi">content</span> is there &mdash; and it is good</div>
-      </div>
-    </div>
-    <div style="padding:24px 26px;background:#172226;border:1px solid #233133;border-radius:10px;border-top:2px solid #FF2453">
-      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#FF2453;text-transform:uppercase">What it left open</div>
-      <div style="margin-top:16px;font-size:13.5px;color:#C6D2D8;line-height:1.9">
-        <div>The thread is readable &mdash; <span class="red">not answerable</span></div>
-        <div>The context <span style="color:#7A7D85">between</span> the systems is missing</div>
-        <div>Every question needs a human to assemble it</div>
-        <div>The <span class="hi">content</span> is there &mdash; but not <span class="red">accessible</span></div>
-      </div>
-    </div>
+  <div class="panel fade-in" style="margin-top:16px;padding:20px 24px 14px">
+    <svg viewBox="0 0 760 240" style="width:100%;display:block" role="img" aria-label="The digital thread connects the systems along the lifecycle; a question from below cannot reach that content — all four paths break at the gap.">
+      <defs>
+        <linearGradient id="dtThread" gradientUnits="userSpaceOnUse" x1="30" y1="0" x2="730" y2="0">
+          <stop offset="0%" stop-color="#009999"/><stop offset="50%" stop-color="#00BDE3"/><stop offset="100%" stop-color="#7FE1F2"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ── OBEN · DER THREAD (gebaut) ── -->
+      <text class="mono" x="20" y="11" font-size="9" fill="#00BDE3" letter-spacing="1.6">THE DIGITAL THREAD &#183; ALONG THE LIFECYCLE</text>
+      <text class="mono s4f-el" x="740" y="11" text-anchor="end" font-size="9" fill="#00BDE3" letter-spacing="1.6" opacity=".75">CONNECTED &#183; VERSIONED &#183; TRACEABLE &mdash; DONE</text>
+      <path class="be-line" d="M30 46 H730" fill="none" stroke="url(#dtThread)" stroke-width="3" stroke-linecap="round"/>
+      <g class="s4f-el" fill="#00BDE3">
+        <circle cx="190" cy="46" r="3"/><circle cx="380" cy="46" r="3"/><circle cx="570" cy="46" r="3"/>
+      </g>
+      <g class="s4f-el">
+        <g><rect x="30" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
+           <text x="95" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">PLM</text>
+           <text class="mono" x="95" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">DESIGN</text></g>
+        <g><rect x="220" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
+           <text x="285" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">ERP</text>
+           <text class="mono" x="285" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">COST</text></g>
+        <g><rect x="410" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
+           <text x="475" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">MES</text>
+           <text class="mono" x="475" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">MAKE</text></g>
+        <g><rect x="600" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
+           <text x="665" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">QMS</text>
+           <text class="mono" x="665" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">QUALITY</text></g>
+      </g>
+
+      <!-- ── GHOST-PFADE: wo die Antwort läge ── -->
+      <g class="s4f-el" opacity=".22">
+        <path d="M162.5 124 L95 70"  stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+        <path d="M307.5 124 L285 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+        <path d="M452.5 124 L475 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+        <path d="M597.5 124 L665 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
+      </g>
+
+      <!-- ── DIE LÜCKE ── -->
+      <g class="s4f-el">
+        <path d="M20 124 H740" stroke="#FF2453" stroke-width="1" stroke-dasharray="2 6" opacity=".45" fill="none"/>
+        <text class="mono" x="20" y="116" font-size="9" fill="#FF2453" letter-spacing="1.6">THE GAP</text>
+        <text class="mono" x="740" y="116" text-anchor="end" font-size="9" fill="#FF2453" letter-spacing="1.6">NO ACCESS</text>
+        <g fill="#0F1619" stroke="#FF2453" stroke-width="1.2">
+          <circle cx="162.5" cy="124" r="8"/><circle cx="307.5" cy="124" r="8"/><circle cx="452.5" cy="124" r="8"/><circle cx="597.5" cy="124" r="8"/>
+        </g>
+        <g stroke="#FF2453" stroke-width="1.4" stroke-linecap="round">
+          <path d="M159.5 121 l6 6 M165.5 121 l-6 6"/>
+          <path d="M304.5 121 l6 6 M310.5 121 l-6 6"/>
+          <path d="M449.5 121 l6 6 M455.5 121 l-6 6"/>
+          <path d="M594.5 121 l6 6 M600.5 121 l-6 6"/>
+        </g>
+      </g>
+
+      <!-- ── UNTEN · DIE FRAGE (blockiert) ── -->
+      <g class="s4f-el">
+        <path d="M230 178 L162.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
+        <path d="M330 178 L307.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
+        <path d="M430 178 L452.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
+        <path d="M530 178 L597.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
+        <text class="mono" x="20" y="170" font-size="9" fill="#FF2453" letter-spacing="1.6">THE QUESTION</text>
+        <text class="mono" x="740" y="170" text-anchor="end" font-size="9" fill="#FF2453" letter-spacing="1.6">ACROSS THE LIFECYCLE</text>
+        <rect x="170" y="178" width="420" height="44" rx="22" fill="#FF24530F" stroke="#FF245355"/>
+        <text x="380" y="205" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-style="italic">&bdquo;What does this change really cost us?&ldquo;</text>
+        <text x="380" y="236" text-anchor="middle" font-size="11" fill="#8A96A0">Four systems hold the answer. <tspan fill="#FF2453">Nothing connects the question to it.</tspan></text>
+      </g>
+    </svg>
   </div>
 
-  <div class="fade-in" style="margin-top:22px;padding:18px 24px;border-left:3px solid #FF2453;background:linear-gradient(90deg,#FF245308,transparent);border-radius:0 8px 8px 0;font-size:14px;line-height:1.75;color:#C6D2D8">We spent fifteen years perfecting the <span class="hi">process</span> of creating the content. The gap is not another thread &mdash; it is <span class="red">access to the content we already have</span>.</div>
+  <div class="fade-in" style="margin-top:16px;padding:15px 22px;border-left:3px solid #FF2453;background:linear-gradient(90deg,#FF245308,transparent);border-radius:0 8px 8px 0;font-size:14px;line-height:1.75;color:#C6D2D8">We spent fifteen years perfecting the <span class="hi">process</span> of creating the content. The gap is not another thread &mdash; it is <span class="red">access to the content we already have</span>.</div>
 
-  <div class="closer fade-in" style="margin-top:34px">The digital thread is the <span class="hi">foundation</span>.<br><span class="red">It is not yet the answer.</span></div>
+  <div class="closer fade-in" style="margin-top:20px">The digital thread is the <span class="hi">foundation</span>.<br><span class="red">It is not yet the answer.</span></div>
 </section>
 
 <!-- S0 HERO 1 -->
