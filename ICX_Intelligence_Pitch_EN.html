@@ -3,8 +3,11 @@
 ╔═══ INTELLIGENCE CENTER X — C-Level Pitch v3 (10.07.2026) ═══╗
 Neue Struktur (Suchzeit-Narrativ):
   1  s0q  Opener: Steve-Jobs-Zitat "the process is the content" (NEU)
-  2  s0dt Überleitung: Digital Thread hat den Content erzeugt —
-          aber nicht zugänglich gemacht; Basis, nicht Lösung (NEU)
+  2  s0dt Überleitung (positiv): Der Prozess der Content-Erzeugung ist
+          bewältigt. Animation im SVG #dt-stage: vier gestreute, unver-
+          bundene Systeme fahren in eine Reihe, der Thread zeichnet sich,
+          Pakete fließen. Auto-Start beim Reinscrollen, Toggle #dt-tabs
+          zum manuellen Umschalten. Der Gap kommt bewusst erst später. (NEU)
   3  s0   Hero: "Informationen suchen ist Teil unseres Arbeitsalltags"
   4  s0p  Proof: McKinsey MGI 2012 — 19% Suchzeit
   5  s4   Ursache: "Was Ihre Systeme nicht sehen"
@@ -228,6 +231,31 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
 .fade-in.visible .be-line{stroke-dashoffset:0}
 .s4f-el{opacity:0;transition:opacity .35s ease}
 .fade-in.visible .s4f-el{opacity:1}
+/* ── S0DT DIGITAL THREAD · unverbunden → verbunden ── */
+#dt-stage .dt-node{transition:transform 1.15s cubic-bezier(.65,0,.35,1)}
+#dt-stage .dt-card{transition:stroke .9s ease,fill .9s ease,filter .9s ease}
+#dt-stage .dt-name{transition:fill .9s ease}
+#dt-stage .dt-sub{transition:fill .9s ease}
+#dt-stage .dt-chip{transition:fill .9s ease,transform .9s ease}
+#dt-stage .dt-thread{stroke-dasharray:700;stroke-dashoffset:700;opacity:0;transition:stroke-dashoffset 1.5s cubic-bezier(.25,.46,.45,.94) .35s,opacity .01s linear .35s}
+#dt-stage.connected .dt-thread{stroke-dashoffset:0;opacity:1;filter:drop-shadow(0 0 6px #00BDE355)}
+#dt-stage.connected .dt-card{stroke:#00BDE3;fill:#101C21;filter:drop-shadow(0 0 10px #00BDE322)}
+#dt-stage.connected .dt-name{fill:#EAF3F7}
+#dt-stage.connected .dt-sub{fill:#00BDE3}
+#dt-stage.connected .dt-chip{fill:#00BDE3;transform:translateY(-4px)}
+#dt-stage .dt-pkt{opacity:0}
+#dt-stage.connected .dt-pkt{animation:dtFlow 3.6s linear infinite}
+@keyframes dtFlow{0%{transform:translateX(0);opacity:0}6%{opacity:1}94%{opacity:1}100%{transform:translateX(700px);opacity:0}}
+#dt-stage .dt-on{opacity:0;transition:opacity .6s ease .8s}
+#dt-stage.connected .dt-on{opacity:1}
+#dt-stage .dt-off{opacity:1;transition:opacity .4s ease}
+#dt-stage.connected .dt-off{opacity:0}
+.dt-cap{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;font-size:12.5px;color:#8A96A0;line-height:1.6}
+.dt-cap.on{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  #dt-stage .dt-node,#dt-stage .dt-thread{transition-duration:.01s}
+  #dt-stage.connected .dt-pkt{animation:none;opacity:1}
+}
 </style>
 </head>
 <body>
@@ -263,84 +291,105 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
   <div class="si-gradbar fade-in" style="margin-top:38px;max-width:120px"></div>
 </section>
 
-<!-- S0DT ÜBERLEITUNG · DIGITAL THREAD IST DIE BASIS, NICHT DIE LÖSUNG -->
+<!-- S0DT ÜBERLEITUNG · DER DIGITAL THREAD IST GESCHAFFT (positiv, noch kein Gap) -->
 <section class="slide" id="s0dt">
-  <div class="label fade-in">The Starting Point &middot; Where We Stand Today</div>
-  <h2 class="h2 fade-in" style="margin-bottom:16px">We built the content.<br>The digital thread proves it.<br><span class="red">But no one can reach it.</span></h2>
-  <p class="body fade-in" style="max-width:780px">The thread runs <span class="hi">along</span> the lifecycle. Every real question runs <span class="red">across</span> it.</p>
+  <div class="label fade-in">The Starting Point &middot; What We Already Achieved</div>
+  <h2 class="h2 fade-in" style="margin-bottom:14px">We mastered the process.<br>And it produced the <span class="cy">content</span>.</h2>
+  <p class="body fade-in" style="max-width:800px">Fifteen years of PLM, ERP, MES and QMS programmes did exactly what they promised: they turned four data islands into <span class="hi">one connected thread</span> along the entire lifecycle.</p>
 
-  <div class="panel fade-in" style="margin-top:16px;padding:20px 24px 14px">
-    <svg viewBox="0 0 760 240" style="width:100%;display:block" role="img" aria-label="The digital thread connects the systems along the lifecycle; a question from below cannot reach that content — all four paths break at the gap.">
+  <div class="wk-toggle fade-in" id="dt-tabs" role="tablist" style="margin-top:20px;align-self:flex-start">
+    <button class="wk-tab" type="button"><span class="tn">01</span>Before &middot; four islands</button>
+    <button class="wk-tab on" type="button"><span class="tn">02</span>Today &middot; the digital thread</button>
+  </div>
+
+  <div class="panel fade-in" style="margin-top:14px;padding:18px 24px 14px">
+    <svg id="dt-stage" viewBox="0 0 760 218" style="width:100%;display:block" role="img" aria-label="Four separate systems move from scattered, unconnected islands into one aligned, continuously connected digital thread along the product lifecycle.">
       <defs>
         <linearGradient id="dtThread" gradientUnits="userSpaceOnUse" x1="30" y1="0" x2="730" y2="0">
           <stop offset="0%" stop-color="#009999"/><stop offset="50%" stop-color="#00BDE3"/><stop offset="100%" stop-color="#7FE1F2"/>
         </linearGradient>
       </defs>
 
-      <!-- ── OBEN · DER THREAD (gebaut) ── -->
-      <text class="mono" x="20" y="11" font-size="9" fill="#00BDE3" letter-spacing="1.6">THE DIGITAL THREAD &#183; ALONG THE LIFECYCLE</text>
-      <text class="mono s4f-el" x="740" y="11" text-anchor="end" font-size="9" fill="#00BDE3" letter-spacing="1.6" opacity=".75">CONNECTED &#183; VERSIONED &#183; TRACEABLE &mdash; DONE</text>
-      <path class="be-line" d="M30 46 H730" fill="none" stroke="url(#dtThread)" stroke-width="3" stroke-linecap="round"/>
-      <g class="s4f-el" fill="#00BDE3">
-        <circle cx="190" cy="46" r="3"/><circle cx="380" cy="46" r="3"/><circle cx="570" cy="46" r="3"/>
-      </g>
-      <g class="s4f-el">
-        <g><rect x="30" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
-           <text x="95" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">PLM</text>
-           <text class="mono" x="95" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">DESIGN</text></g>
-        <g><rect x="220" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
-           <text x="285" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">ERP</text>
-           <text class="mono" x="285" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">COST</text></g>
-        <g><rect x="410" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
-           <text x="475" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">MES</text>
-           <text class="mono" x="475" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">MAKE</text></g>
-        <g><rect x="600" y="22" width="130" height="48" rx="8" fill="#172226" stroke="#00BDE355"/>
-           <text x="665" y="43" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-weight="600">QMS</text>
-           <text class="mono" x="665" y="58" text-anchor="middle" font-size="8.5" fill="#7A7D85" letter-spacing=".8">QUALITY</text></g>
+      <text class="mono" x="20" y="14" font-size="9" fill="#00BDE3" letter-spacing="1.6">THE DIGITAL THREAD</text>
+      <text class="mono dt-off" x="740" y="14" text-anchor="end" font-size="9" fill="#5E6B72" letter-spacing="1.6">FOUR SYSTEMS &#183; FOUR ISLANDS &#183; EVERYTHING BY HAND</text>
+      <text class="mono dt-on"  x="740" y="14" text-anchor="end" font-size="9" fill="#00BDE3" letter-spacing="1.6">CREATED &#183; CONNECTED &#183; VERSIONED &#183; TRACEABLE</text>
+
+      <!-- der Thread selbst -->
+      <path class="dt-thread" d="M30 112 H730" fill="none" stroke="url(#dtThread)" stroke-width="3" stroke-linecap="round"/>
+      <g class="dt-pkt-row" fill="#7FE1F2">
+        <circle class="dt-pkt" cx="30" cy="112" r="4" style="animation-delay:0s"/>
+        <circle class="dt-pkt" cx="30" cy="112" r="4" style="animation-delay:1.2s"/>
+        <circle class="dt-pkt" cx="30" cy="112" r="4" style="animation-delay:2.4s"/>
       </g>
 
-      <!-- ── GHOST-PFADE: wo die Antwort läge ── -->
-      <g class="s4f-el" opacity=".22">
-        <path d="M162.5 124 L95 70"  stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
-        <path d="M307.5 124 L285 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
-        <path d="M452.5 124 L475 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
-        <path d="M597.5 124 L665 70" stroke="#FF2453" stroke-width="1.4" stroke-dasharray="4 5" fill="none"/>
-      </g>
-
-      <!-- ── DIE LÜCKE ── -->
-      <g class="s4f-el">
-        <path d="M20 124 H740" stroke="#FF2453" stroke-width="1" stroke-dasharray="2 6" opacity=".45" fill="none"/>
-        <text class="mono" x="20" y="116" font-size="9" fill="#FF2453" letter-spacing="1.6">THE GAP</text>
-        <text class="mono" x="740" y="116" text-anchor="end" font-size="9" fill="#FF2453" letter-spacing="1.6">NO ACCESS</text>
-        <g fill="#0F1619" stroke="#FF2453" stroke-width="1.2">
-          <circle cx="162.5" cy="124" r="8"/><circle cx="307.5" cy="124" r="8"/><circle cx="452.5" cy="124" r="8"/><circle cx="597.5" cy="124" r="8"/>
+      <!-- die vier Systeme -->
+      <g class="dt-nodes">
+        <g class="dt-node" data-off="translate(105px,76px) rotate(-7deg)" data-on="translate(95px,112px) rotate(0deg)"
+           style="transform:translate(105px,76px) rotate(-7deg);transition-delay:0s">
+          <rect class="dt-card" x="-65" y="-24" width="130" height="48" rx="8" fill="#182126" stroke="#3C4C54"/>
+          <text class="dt-name" x="0" y="-3" text-anchor="middle" font-size="13.5" font-weight="600" fill="#A7B3BA">PLM</text>
+          <text class="dt-sub mono" x="0" y="13" text-anchor="middle" font-size="8.5" fill="#6B7880" letter-spacing=".8">DESIGN</text>
+          <g class="dt-chip-row">
+            <rect class="dt-chip" x="-21" y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="-5"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="11"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+          </g>
         </g>
-        <g stroke="#FF2453" stroke-width="1.4" stroke-linecap="round">
-          <path d="M159.5 121 l6 6 M165.5 121 l-6 6"/>
-          <path d="M304.5 121 l6 6 M310.5 121 l-6 6"/>
-          <path d="M449.5 121 l6 6 M455.5 121 l-6 6"/>
-          <path d="M594.5 121 l6 6 M600.5 121 l-6 6"/>
+        <g class="dt-node" data-off="translate(300px,168px) rotate(5deg)" data-on="translate(285px,112px) rotate(0deg)"
+           style="transform:translate(300px,168px) rotate(5deg);transition-delay:0.08s">
+          <rect class="dt-card" x="-65" y="-24" width="130" height="48" rx="8" fill="#182126" stroke="#3C4C54"/>
+          <text class="dt-name" x="0" y="-3" text-anchor="middle" font-size="13.5" font-weight="600" fill="#A7B3BA">ERP</text>
+          <text class="dt-sub mono" x="0" y="13" text-anchor="middle" font-size="8.5" fill="#6B7880" letter-spacing=".8">COST</text>
+          <g class="dt-chip-row">
+            <rect class="dt-chip" x="-21" y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="-5"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="11"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+          </g>
+        </g>
+        <g class="dt-node" data-off="translate(470px,70px) rotate(-4deg)" data-on="translate(475px,112px) rotate(0deg)"
+           style="transform:translate(470px,70px) rotate(-4deg);transition-delay:0.16s">
+          <rect class="dt-card" x="-65" y="-24" width="130" height="48" rx="8" fill="#182126" stroke="#3C4C54"/>
+          <text class="dt-name" x="0" y="-3" text-anchor="middle" font-size="13.5" font-weight="600" fill="#A7B3BA">MES</text>
+          <text class="dt-sub mono" x="0" y="13" text-anchor="middle" font-size="8.5" fill="#6B7880" letter-spacing=".8">MAKE</text>
+          <g class="dt-chip-row">
+            <rect class="dt-chip" x="-21" y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="-5"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="11"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+          </g>
+        </g>
+        <g class="dt-node" data-off="translate(655px,165px) rotate(8deg)" data-on="translate(665px,112px) rotate(0deg)"
+           style="transform:translate(655px,165px) rotate(8deg);transition-delay:0.24s">
+          <rect class="dt-card" x="-65" y="-24" width="130" height="48" rx="8" fill="#182126" stroke="#3C4C54"/>
+          <text class="dt-name" x="0" y="-3" text-anchor="middle" font-size="13.5" font-weight="600" fill="#A7B3BA">QMS</text>
+          <text class="dt-sub mono" x="0" y="13" text-anchor="middle" font-size="8.5" fill="#6B7880" letter-spacing=".8">QUALITY</text>
+          <g class="dt-chip-row">
+            <rect class="dt-chip" x="-21" y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="-5"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+            <rect class="dt-chip" x="11"  y="32" width="12" height="8" rx="2" fill="#3C4C54"/>
+          </g>
         </g>
       </g>
 
-      <!-- ── UNTEN · DIE FRAGE (blockiert) ── -->
-      <g class="s4f-el">
-        <path d="M230 178 L162.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
-        <path d="M330 178 L307.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
-        <path d="M430 178 L452.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
-        <path d="M530 178 L597.5 124" stroke="#FF2453" stroke-width="1.6" stroke-dasharray="6 4" fill="none"/>
-        <text class="mono" x="20" y="170" font-size="9" fill="#FF2453" letter-spacing="1.6">THE QUESTION</text>
-        <text class="mono" x="740" y="170" text-anchor="end" font-size="9" fill="#FF2453" letter-spacing="1.6">ACROSS THE LIFECYCLE</text>
-        <rect x="170" y="178" width="420" height="44" rx="22" fill="#FF24530F" stroke="#FF245355"/>
-        <text x="380" y="205" text-anchor="middle" font-size="13.5" fill="#EAF3F7" font-style="italic">&bdquo;What does this change really cost us?&ldquo;</text>
-        <text x="380" y="236" text-anchor="middle" font-size="11" fill="#8A96A0">Four systems hold the answer. <tspan fill="#FF2453">Nothing connects the question to it.</tspan></text>
+      <!-- Lebenszyklus-Achse, erscheint erst im verbundenen Zustand -->
+      <g class="dt-on">
+        <text class="mono" x="30" y="36" font-size="8.5" fill="#4E5A61" letter-spacing="1.4">IDEA</text>
+        <text class="mono" x="722" y="36" text-anchor="end" font-size="8.5" fill="#4E5A61" letter-spacing="1.4">FIELD</text>
+        <path d="M30 46 H726" stroke="#233133" stroke-width="1"/>
+        <path d="M726 42 L734 46 L726 50 Z" fill="#233133"/>
+        <g stroke="#233133" stroke-width="1">
+          <path d="M95 46 V52"/><path d="M285 46 V52"/><path d="M475 46 V52"/><path d="M665 46 V52"/>
+        </g>
+        <text class="mono" x="380" y="202" text-anchor="middle" font-size="9" fill="#00BDE3" letter-spacing="1.6">ONE CONTINUOUS THREAD &#183; END TO END</text>
       </g>
     </svg>
   </div>
 
-  <div class="fade-in" style="margin-top:16px;padding:15px 22px;border-left:3px solid #FF2453;background:linear-gradient(90deg,#FF245308,transparent);border-radius:0 8px 8px 0;font-size:14px;line-height:1.75;color:#C6D2D8">We spent fifteen years perfecting the <span class="hi">process</span> of creating the content. The gap is not another thread &mdash; it is <span class="red">access to the content we already have</span>.</div>
+  <div id="dt-caps" class="fade-in" style="position:relative;height:26px;margin-top:12px">
+    <div class="dt-cap" data-i="0">Each system knew its own part &mdash; and nothing beyond it. Every link between them was carried by a person.</div>
+    <div class="dt-cap on" data-i="1">Design, cost, production and quality now sit on <span class="hi">one thread</span>: same object, same version, same truth &mdash; from the first idea to the part in the field.</div>
+  </div>
 
-  <div class="closer fade-in" style="margin-top:20px">The digital thread is the <span class="hi">foundation</span>.<br><span class="red">It is not yet the answer.</span></div>
+  <div class="closer fade-in" style="margin-top:22px">The hard part is done.<br><span class="cy">The content exists &mdash; and it is connected.</span></div>
 </section>
 
 <!-- S0 HERO 1 -->
@@ -3634,6 +3683,45 @@ function toggleObj(btn){
   size();
   window.addEventListener('resize', size);
   frame();
+})();
+
+// ─── S0DT · DIGITAL THREAD: unverbunden → verbunden ─────────────────────────
+(function digitalThread(){
+  const stage = document.getElementById('dt-stage');
+  const sec   = document.getElementById('s0dt');
+  if(!stage || !sec) return;
+  const nodes = Array.from(stage.querySelectorAll('.dt-node'));
+  const tabs  = Array.from(document.querySelectorAll('#dt-tabs .wk-tab'));
+  const caps  = Array.from(document.querySelectorAll('#dt-caps .dt-cap'));
+  let timer = null, armed = true;
+
+  function set(on){
+    stage.classList.toggle('connected', on);
+    nodes.forEach(n => { n.style.transform = on ? n.dataset.on : n.dataset.off; });
+    tabs.forEach((t, i) => t.classList.toggle('on', (i === 1) === on));
+    caps.forEach((c, i) => c.classList.toggle('on', (i === 1) === on));
+  }
+
+  tabs.forEach((t, i) => t.addEventListener('click', e => {
+    e.stopPropagation();           // Deck-Klicknavigation nicht auslösen
+    clearTimeout(timer); armed = false;
+    set(i === 1);
+  }));
+
+  // Beim Reinscrollen unverbunden starten und automatisch verbinden.
+  // Verlässt die Slide den Viewport, wird die Sequenz für den nächsten Durchlauf scharf gestellt.
+  set(false);
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        if(!armed) return;
+        armed = false;
+        timer = setTimeout(() => set(true), 900);
+      } else {
+        clearTimeout(timer); armed = true; set(false);
+      }
+    });
+  }, {threshold:.35}).observe(sec);
 })();
 
 // ─── NAVIGATION · Fortschritt / Akt-Anzeige / Tastatur ──────────────────────
