@@ -4,14 +4,18 @@
 Neue Struktur (Suchzeit-Narrativ):
   1  s0q  Opener: Steve-Jobs-Zitat "the process is the content" (NEU)
   2  s0dt Überleitung (positiv): Der Prozess der Content-Erzeugung ist
-          bewältigt. Animation im SVG #dt-stage: 24 verstreute Fasern und
-          70 Datenpunkte fahren zu einem geflochtenen Seil aus Licht
-          zusammen, der Thread zeichnet sich, Pakete fließen. Bewusst
-          systemagnostisch — keine Produktnamen, das Bild soll gerade
-          NICHT nach "es gibt nur vier Systeme" aussehen. Auto-Start beim
-          Reinscrollen, Toggle #dt-tabs zum manuellen Umschalten.
-          Der Gap kommt bewusst erst später. Koordinaten sind generiert
-          (seed 90210) — bei Änderungen neu würfeln, nicht von Hand. (NEU)
+          bewältigt. Animation im SVG #dt-stage: 12 benannte Systeme und
+          58 anonyme Datenpunkte liegen verstreut und unverbunden; beim
+          Verbinden wandern sie auf einen mäandernden Thread, durch den
+          sich 7 Fasern zeichnen (#dt-spinepath = Mittelfaser, trägt die
+          animateMotion-Pakete). Bewusst KEINE gerade Linie und bewusst
+          mehr Punkte als Namen — das Bild darf nicht nach "es gibt nur
+          vier Systeme" aussehen. Auto-Start beim Reinscrollen, Toggle
+          #dt-tabs zum manuellen Umschalten. Der Gap kommt erst später.
+          Geometrie ist generiert (seed 31415, Sinus-Mäander um y=116) —
+          bei Änderungen neu erzeugen, nicht von Hand schieben.
+          Geplant: derselbe Thread wird auf s4 wieder aufgegriffen und
+          dort zum Netzwerk aufgefächert. (NEU)
   3  s0   Hero: "Informationen suchen ist Teil unseres Arbeitsalltags"
   4  s0p  Proof: McKinsey MGI 2012 — 19% Suchzeit
   5  s4   Ursache: "Was Ihre Systeme nicht sehen"
@@ -235,30 +239,40 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
 .fade-in.visible .be-line{stroke-dashoffset:0}
 .s4f-el{opacity:0;transition:opacity .35s ease}
 .fade-in.visible .s4f-el{opacity:1}
-/* ── S0DT DIGITAL THREAD · lose Enden → ein Thread ── */
+/* ── S0DT DIGITAL THREAD · lose Enden → ein Geflecht ── */
 #dt-stage .dt-el{transition:transform 1.25s cubic-bezier(.62,0,.3,1)}
-#dt-stage .dt-strand{stroke:#37474F;transition:transform 1.25s cubic-bezier(.62,0,.3,1),stroke .9s ease}
-#dt-stage.connected .dt-strand{stroke:#00BDE3}
 #dt-stage .dt-part{fill:#46585F;transition:transform 1.25s cubic-bezier(.62,0,.3,1),fill .9s ease}
 #dt-stage.connected .dt-part{fill:#7FE1F2}
-#dt-stage .dt-strands,#dt-stage .dt-parts{transition:filter .9s ease}
-#dt-stage.connected .dt-strands{filter:drop-shadow(0 0 7px #00BDE344)}
+#dt-stage .dt-parts{transition:filter .9s ease}
 #dt-stage.connected .dt-parts{filter:drop-shadow(0 0 5px #7FE1F255)}
-#dt-stage .dt-halo{opacity:0;transition:opacity 1.1s ease .3s}
+/* benannte Systeme: Knoten im Geflecht */
+#dt-stage .dt-ring{fill:none;stroke:#4A5C64;stroke-width:1.2;transition:stroke .9s ease,fill .9s ease}
+#dt-stage .dt-core{fill:#6E8189;transition:fill .9s ease}
+#dt-stage .dt-lab{fill:#859299;transition:fill .9s ease}
+#dt-stage.connected .dt-ring{stroke:#00BDE3;fill:#00BDE314}
+#dt-stage.connected .dt-core{fill:#CFF6FF}
+#dt-stage.connected .dt-lab{fill:#9FD9E8}
+#dt-stage.connected .dt-sys{filter:drop-shadow(0 0 6px #00BDE344)}
+/* die Fasern zeichnen sich erst beim Verbinden durch die Punkte */
+#dt-stage .dt-strand{stroke:#00BDE3;stroke-dasharray:1100;stroke-dashoffset:1100;
+  transition:stroke-dashoffset 1.7s cubic-bezier(.25,.46,.45,.94) .45s}
+#dt-stage.connected .dt-strand{stroke-dashoffset:0}
+#dt-stage.connected .dt-spine{filter:drop-shadow(0 0 7px #00BDE377)}
+#dt-stage .dt-weave{opacity:0;transition:opacity .3s ease .45s}
+#dt-stage.connected .dt-weave{opacity:1}
+#dt-stage .dt-halo{opacity:0;transition:opacity 1.1s ease .5s}
 #dt-stage.connected .dt-halo{opacity:1}
-#dt-stage .dt-thread{stroke-dasharray:700;stroke-dashoffset:700;opacity:0;transition:stroke-dashoffset 1.6s cubic-bezier(.25,.46,.45,.94) .4s,opacity .01s linear .4s}
-#dt-stage.connected .dt-thread{stroke-dashoffset:0;opacity:1;filter:drop-shadow(0 0 7px #00BDE366)}
-#dt-stage .dt-pkt{opacity:0}
-#dt-stage.connected .dt-pkt{animation:dtFlow 3.6s linear infinite}
-@keyframes dtFlow{0%{transform:translateX(0);opacity:0}6%{opacity:1}94%{opacity:1}100%{transform:translateX(700px);opacity:0}}
-#dt-stage .dt-on{opacity:0;transition:opacity .6s ease .9s}
+#dt-stage .dt-pkt{opacity:0;transition:opacity .5s ease 1.6s}
+#dt-stage.connected .dt-pkt{opacity:1}
+#dt-stage .dt-on{opacity:0;transition:opacity .6s ease 1s}
 #dt-stage.connected .dt-on{opacity:1}
 #dt-stage .dt-off{opacity:1;transition:opacity .4s ease}
 #dt-stage.connected .dt-off{opacity:0}
 .dt-cap{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;font-size:12.5px;color:#8A96A0;line-height:1.6}
 .dt-cap.on{opacity:1}
 @media(prefers-reduced-motion:reduce){
-  #dt-stage .dt-el,#dt-stage .dt-strand,#dt-stage .dt-part,#dt-stage .dt-thread{transition-duration:.01s}
+  #dt-stage .dt-el,#dt-stage .dt-strand,#dt-stage .dt-part{transition-duration:.01s}
+  #dt-stage .dt-pkt{display:none}
   #dt-stage.connected .dt-pkt{animation:none;opacity:1}
 }
 </style>
@@ -320,308 +334,301 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
         </radialGradient>
       </defs>
 
-      <ellipse class="dt-halo" cx="380" cy="105" rx="398" ry="96" fill="url(#dtGlow)"/>
+      <ellipse class="dt-halo" cx="380" cy="116" rx="398" ry="92" fill="url(#dtGlow)"/>
 
       <text class="mono" x="20" y="14" font-size="9" fill="#00BDE3" letter-spacing="1.6">THE DIGITAL THREAD</text>
       <text class="mono dt-off" x="740" y="14" text-anchor="end" font-size="9" fill="#5E6B72" letter-spacing="1.6">COUNTLESS SOURCES &#183; NO COMMON SPINE</text>
       <text class="mono dt-on"  x="740" y="14" text-anchor="end" font-size="9" fill="#00BDE3" letter-spacing="1.6">CREATED &#183; CONNECTED &#183; VERSIONED &#183; TRACEABLE</text>
 
-      <!-- Fasern: lose Enden → ein geflochtenes Seil aus Licht -->
-      <g class="dt-strands" fill="none" stroke-linecap="round">
-        <path class="dt-el dt-strand" d="M-225 0 Q 0 -126 225 0" stroke-width="1.5" opacity="0.16"
-              data-on="translate(110px,110px) rotate(0deg)" data-off="translate(275px,77px) rotate(-38deg)"
-              style="transform:translate(275px,77px) rotate(-38deg);transition-delay:0.00s"/>
-        <path class="dt-el dt-strand" d="M-225 0 Q 0 -118 225 0" stroke-width="1.5" opacity="0.14"
-              data-on="translate(290px,109px) rotate(0deg)" data-off="translate(189px,157px) rotate(-13deg)"
-              style="transform:translate(189px,157px) rotate(-13deg);transition-delay:0.04s"/>
-        <path class="dt-el dt-strand" d="M-225 0 Q 0 -95 225 0" stroke-width="1.5" opacity="0.16"
-              data-on="translate(470px,110px) rotate(0deg)" data-off="translate(567px,143px) rotate(26deg)"
-              style="transform:translate(567px,143px) rotate(26deg);transition-delay:0.08s"/>
-        <path class="dt-el dt-strand" d="M-225 0 Q 0 -107 225 0" stroke-width="1.5" opacity="0.22"
-              data-on="translate(650px,105px) rotate(0deg)" data-off="translate(590px,144px) rotate(-18deg)"
-              style="transform:translate(590px,144px) rotate(-18deg);transition-delay:0.12s"/>
-        <path class="dt-el dt-strand" d="M-121 0 Q 0 72 121 0" stroke-width="2.4" opacity="0.48"
-              data-on="translate(37px,106px) rotate(0deg)" data-off="translate(264px,103px) rotate(72deg)"
-              style="transform:translate(264px,103px) rotate(72deg);transition-delay:0.16s"/>
-        <path class="dt-el dt-strand" d="M-77 0 Q 0 76 77 0" stroke-width="1.7" opacity="0.37"
-              data-on="translate(73px,103px) rotate(0deg)" data-off="translate(224px,82px) rotate(67deg)"
-              style="transform:translate(224px,82px) rotate(67deg);transition-delay:0.20s"/>
-        <path class="dt-el dt-strand" d="M-96 0 Q 0 -88 96 0" stroke-width="1.7" opacity="0.42"
-              data-on="translate(100px,106px) rotate(0deg)" data-off="translate(432px,189px) rotate(51deg)"
-              style="transform:translate(432px,189px) rotate(51deg);transition-delay:0.24s"/>
-        <path class="dt-el dt-strand" d="M-128 0 Q 0 96 128 0" stroke-width="1.9" opacity="0.42"
-              data-on="translate(136px,99px) rotate(0deg)" data-off="translate(254px,82px) rotate(2deg)"
-              style="transform:translate(254px,82px) rotate(2deg);transition-delay:0.28s"/>
-        <path class="dt-el dt-strand" d="M-84 0 Q 0 -100 84 0" stroke-width="2.1" opacity="0.53"
-              data-on="translate(178px,105px) rotate(0deg)" data-off="translate(648px,77px) rotate(17deg)"
-              style="transform:translate(648px,77px) rotate(17deg);transition-delay:0.32s"/>
-        <path class="dt-el dt-strand" d="M-94 0 Q 0 56 94 0" stroke-width="1.7" opacity="0.46"
-              data-on="translate(224px,111px) rotate(0deg)" data-off="translate(407px,164px) rotate(-69deg)"
-              style="transform:translate(407px,164px) rotate(-69deg);transition-delay:0.00s"/>
-        <path class="dt-el dt-strand" d="M-155 0 Q 0 83 155 0" stroke-width="2.6" opacity="0.54"
-              data-on="translate(249px,102px) rotate(0deg)" data-off="translate(234px,154px) rotate(-50deg)"
-              style="transform:translate(234px,154px) rotate(-50deg);transition-delay:0.04s"/>
-        <path class="dt-el dt-strand" d="M-131 0 Q 0 64 131 0" stroke-width="2.6" opacity="0.57"
-              data-on="translate(282px,100px) rotate(0deg)" data-off="translate(385px,160px) rotate(-31deg)"
-              style="transform:translate(385px,160px) rotate(-31deg);transition-delay:0.08s"/>
-        <path class="dt-el dt-strand" d="M-81 0 Q 0 -106 81 0" stroke-width="1.9" opacity="0.55"
-              data-on="translate(325px,110px) rotate(0deg)" data-off="translate(121px,95px) rotate(5deg)"
-              style="transform:translate(121px,95px) rotate(5deg);transition-delay:0.12s"/>
-        <path class="dt-el dt-strand" d="M-147 0 Q 0 105 147 0" stroke-width="1.9" opacity="0.38"
-              data-on="translate(361px,111px) rotate(0deg)" data-off="translate(425px,150px) rotate(-22deg)"
-              style="transform:translate(425px,150px) rotate(-22deg);transition-delay:0.16s"/>
-        <path class="dt-el dt-strand" d="M-72 0 Q 0 67 72 0" stroke-width="1.7" opacity="0.49"
-              data-on="translate(388px,111px) rotate(0deg)" data-off="translate(640px,97px) rotate(26deg)"
-              style="transform:translate(640px,97px) rotate(26deg);transition-delay:0.20s"/>
-        <path class="dt-el dt-strand" d="M-94 0 Q 0 -54 94 0" stroke-width="1.8" opacity="0.51"
-              data-on="translate(433px,110px) rotate(0deg)" data-off="translate(441px,177px) rotate(39deg)"
-              style="transform:translate(441px,177px) rotate(39deg);transition-delay:0.24s"/>
-        <path class="dt-el dt-strand" d="M-132 0 Q 0 58 132 0" stroke-width="2.0" opacity="0.39"
-              data-on="translate(476px,107px) rotate(0deg)" data-off="translate(401px,132px) rotate(6deg)"
-              style="transform:translate(401px,132px) rotate(6deg);transition-delay:0.28s"/>
-        <path class="dt-el dt-strand" d="M-88 0 Q 0 -76 88 0" stroke-width="2.4" opacity="0.6"
-              data-on="translate(502px,99px) rotate(0deg)" data-off="translate(426px,91px) rotate(-59deg)"
-              style="transform:translate(426px,91px) rotate(-59deg);transition-delay:0.32s"/>
-        <path class="dt-el dt-strand" d="M-127 0 Q 0 -57 127 0" stroke-width="2.2" opacity="0.35"
-              data-on="translate(534px,103px) rotate(0deg)" data-off="translate(251px,154px) rotate(31deg)"
-              style="transform:translate(251px,154px) rotate(31deg);transition-delay:0.00s"/>
-        <path class="dt-el dt-strand" d="M-146 0 Q 0 70 146 0" stroke-width="2.4" opacity="0.33"
-              data-on="translate(567px,111px) rotate(0deg)" data-off="translate(115px,100px) rotate(-42deg)"
-              style="transform:translate(115px,100px) rotate(-42deg);transition-delay:0.04s"/>
-        <path class="dt-el dt-strand" d="M-141 0 Q 0 92 141 0" stroke-width="1.7" opacity="0.35"
-              data-on="translate(618px,112px) rotate(0deg)" data-off="translate(488px,119px) rotate(24deg)"
-              style="transform:translate(488px,119px) rotate(24deg);transition-delay:0.08s"/>
-        <path class="dt-el dt-strand" d="M-132 0 Q 0 74 132 0" stroke-width="1.7" opacity="0.43"
-              data-on="translate(652px,104px) rotate(0deg)" data-off="translate(678px,122px) rotate(34deg)"
-              style="transform:translate(678px,122px) rotate(34deg);transition-delay:0.12s"/>
-        <path class="dt-el dt-strand" d="M-97 0 Q 0 100 97 0" stroke-width="2.1" opacity="0.53"
-              data-on="translate(692px,101px) rotate(0deg)" data-off="translate(224px,133px) rotate(-29deg)"
-              style="transform:translate(224px,133px) rotate(-29deg);transition-delay:0.16s"/>
-        <path class="dt-el dt-strand" d="M-108 0 Q 0 54 108 0" stroke-width="2.6" opacity="0.4"
-              data-on="translate(716px,104px) rotate(0deg)" data-off="translate(619px,87px) rotate(-13deg)"
-              style="transform:translate(619px,87px) rotate(-13deg);transition-delay:0.20s"/>
+      <!-- der Thread: ein durchgehendes Geflecht, keine gerade Linie -->
+      <g class="dt-weave" fill="none" stroke-linecap="round">
+        <path class="dt-strand" d="M-10.0 74.3 C-7.3 75.2 0.7 78.3 6.0 80.0 C11.3 81.8 16.7 83.3 22.0 84.7 C27.3 86.0 32.7 87.2 38.0 88.1 C43.3 89.1 48.7 89.8 54.0 90.4 C59.3 91.1 64.7 91.5 70.0 91.9 C75.3 92.4 80.7 92.7 86.0 93.0 C91.3 93.4 96.7 93.7 102.0 94.2 C107.3 94.7 112.7 95.2 118.0 95.9 C123.3 96.6 128.7 97.4 134.0 98.4 C139.3 99.4 144.7 100.6 150.0 102.0 C155.3 103.4 160.7 105.0 166.0 106.8 C171.3 108.5 176.7 110.5 182.0 112.5 C187.3 114.5 192.7 116.7 198.0 118.9 C203.3 121.0 208.7 123.2 214.0 125.3 C219.3 127.4 224.7 129.5 230.0 131.4 C235.3 133.2 240.7 134.9 246.0 136.3 C251.3 137.7 256.7 138.9 262.0 139.7 C267.3 140.5 272.7 141.0 278.0 141.1 C283.3 141.2 288.7 140.9 294.0 140.2 C299.3 139.6 304.7 138.5 310.0 137.1 C315.3 135.7 320.7 133.9 326.0 131.9 C331.3 129.9 336.7 127.5 342.0 125.0 C347.3 122.5 352.7 119.8 358.0 117.0 C363.3 114.2 368.7 111.3 374.0 108.5 C379.3 105.6 384.7 102.7 390.0 100.1 C395.3 97.4 400.7 94.7 406.0 92.3 C411.3 89.9 416.7 87.7 422.0 85.8 C427.3 83.8 432.7 82.1 438.0 80.6 C443.3 79.1 448.7 77.9 454.0 76.9 C459.3 75.9 464.7 75.2 470.0 74.6 C475.3 74.0 480.7 73.7 486.0 73.3 C491.3 73.0 496.7 72.9 502.0 72.7 C507.3 72.5 512.7 72.5 518.0 72.3 C523.3 72.1 528.7 71.9 534.0 71.5 C539.3 71.1 544.7 70.7 550.0 70.1 C555.3 69.4 560.7 68.7 566.0 67.8 C571.3 66.8 576.7 65.7 582.0 64.5 C587.3 63.3 592.7 61.9 598.0 60.4 C603.3 59.0 608.7 57.4 614.0 55.9 C619.3 54.4 624.7 52.8 630.0 51.4 C635.3 50.0 640.7 48.6 646.0 47.4 C651.3 46.3 656.7 45.3 662.0 44.6 C667.3 43.9 672.7 43.4 678.0 43.3 C683.3 43.2 688.7 43.5 694.0 44.1 C699.3 44.7 704.7 45.6 710.0 46.9 C715.3 48.2 720.7 50.0 726.0 51.9 C731.3 53.9 736.7 56.3 742.0 58.8 C747.3 61.4 755.3 65.8 758.0 67.2" stroke-width="1.4" opacity="0.18" style="transition-delay:0.45s"/>
+        <path class="dt-strand" d="M-10.0 98.1 C-7.3 98.4 0.7 99.5 6.0 100.1 C11.3 100.6 16.7 101.0 22.0 101.4 C27.3 101.8 32.7 102.0 38.0 102.4 C43.3 102.8 48.7 103.2 54.0 103.7 C59.3 104.3 64.7 104.9 70.0 105.7 C75.3 106.5 80.7 107.5 86.0 108.6 C91.3 109.8 96.7 111.1 102.0 112.7 C107.3 114.2 112.7 116.0 118.0 117.8 C123.3 119.7 128.7 121.8 134.0 123.8 C139.3 125.9 144.7 128.2 150.0 130.3 C155.3 132.4 160.7 134.7 166.0 136.7 C171.3 138.7 176.7 140.7 182.0 142.4 C187.3 144.1 192.7 145.6 198.0 146.8 C203.3 148.0 208.7 148.9 214.0 149.5 C219.3 150.0 224.7 150.2 230.0 150.0 C235.3 149.8 240.7 149.3 246.0 148.3 C251.3 147.4 256.7 146.0 262.0 144.4 C267.3 142.7 272.7 140.7 278.0 138.5 C283.3 136.3 288.7 133.7 294.0 131.1 C299.3 128.5 304.7 125.6 310.0 122.8 C315.3 120.0 320.7 117.1 326.0 114.3 C331.3 111.5 336.7 108.6 342.0 106.0 C347.3 103.5 352.7 100.9 358.0 98.7 C363.3 96.5 368.7 94.4 374.0 92.6 C379.3 90.9 384.7 89.3 390.0 88.0 C395.3 86.8 400.7 85.7 406.0 84.9 C411.3 84.1 416.7 83.5 422.0 83.0 C427.3 82.5 432.7 82.3 438.0 82.1 C443.3 81.8 448.7 81.7 454.0 81.5 C459.3 81.4 464.7 81.3 470.0 81.0 C475.3 80.8 480.7 80.5 486.0 80.1 C491.3 79.6 496.7 79.0 502.0 78.3 C507.3 77.6 512.7 76.7 518.0 75.6 C523.3 74.6 528.7 73.4 534.0 72.1 C539.3 70.7 544.7 69.3 550.0 67.8 C555.3 66.3 560.7 64.7 566.0 63.2 C571.3 61.7 576.7 60.2 582.0 58.8 C587.3 57.5 592.7 56.2 598.0 55.2 C603.3 54.2 608.7 53.4 614.0 52.9 C619.3 52.4 624.7 52.2 630.0 52.4 C635.3 52.5 640.7 53.0 646.0 53.9 C651.3 54.7 656.7 56.0 662.0 57.6 C667.3 59.1 672.7 61.1 678.0 63.3 C683.3 65.5 688.7 68.1 694.0 70.8 C699.3 73.5 704.7 76.6 710.0 79.6 C715.3 82.6 720.7 85.8 726.0 89.0 C731.3 92.1 736.7 95.3 742.0 98.3 C747.3 101.4 755.3 105.6 758.0 107.1" stroke-width="1.7" opacity="0.28" style="transition-delay:0.52s"/>
+        <path class="dt-strand" d="M-10.0 97.7 C-7.3 98.4 0.7 100.9 6.0 102.2 C11.3 103.5 16.7 104.6 22.0 105.5 C27.3 106.4 32.7 107.1 38.0 107.7 C43.3 108.3 48.7 108.7 54.0 109.1 C59.3 109.5 64.7 109.8 70.0 110.2 C75.3 110.5 80.7 110.9 86.0 111.4 C91.3 111.9 96.7 112.4 102.0 113.1 C107.3 113.9 112.7 114.7 118.0 115.8 C123.3 116.9 128.7 118.1 134.0 119.6 C139.3 121.0 144.7 122.7 150.0 124.4 C155.3 126.2 160.7 128.2 166.0 130.3 C171.3 132.3 176.7 134.5 182.0 136.7 C187.3 138.8 192.7 141.1 198.0 143.1 C203.3 145.2 208.7 147.3 214.0 149.0 C219.3 150.8 224.7 152.5 230.0 153.8 C235.3 155.2 240.7 156.3 246.0 157.0 C251.3 157.7 256.7 158.1 262.0 158.1 C267.3 158.1 272.7 157.7 278.0 157.0 C283.3 156.2 288.7 155.0 294.0 153.6 C299.3 152.1 304.7 150.2 310.0 148.1 C315.3 146.0 320.7 143.6 326.0 141.1 C331.3 138.5 336.7 135.7 342.0 133.0 C347.3 130.2 352.7 127.2 358.0 124.4 C363.3 121.6 368.7 118.7 374.0 116.0 C379.3 113.4 384.7 110.8 390.0 108.4 C395.3 106.1 400.7 103.9 406.0 102.0 C411.3 100.1 416.7 98.5 422.0 97.1 C427.3 95.6 432.7 94.5 438.0 93.6 C443.3 92.6 448.7 91.9 454.0 91.4 C459.3 90.8 464.7 90.5 470.0 90.2 C475.3 89.9 480.7 89.8 486.0 89.7 C491.3 89.5 496.7 89.4 502.0 89.2 C507.3 89.0 512.7 88.8 518.0 88.4 C523.3 88.0 528.7 87.5 534.0 86.8 C539.3 86.2 544.7 85.4 550.0 84.4 C555.3 83.4 560.7 82.3 566.0 81.0 C571.3 79.8 576.7 78.3 582.0 76.9 C587.3 75.4 592.7 73.8 598.0 72.3 C603.3 70.8 608.7 69.3 614.0 67.9 C619.3 66.5 624.7 65.1 630.0 64.0 C635.3 62.9 640.7 61.9 646.0 61.3 C651.3 60.7 656.7 60.3 662.0 60.3 C667.3 60.3 672.7 60.6 678.0 61.3 C683.3 62.0 688.7 63.0 694.0 64.4 C699.3 65.8 704.7 67.6 710.0 69.7 C715.3 71.8 720.7 74.2 726.0 76.8 C731.3 79.4 736.7 82.3 742.0 85.3 C747.3 88.3 755.3 93.1 758.0 94.6" stroke-width="2.0" opacity="0.4" style="transition-delay:0.59s"/>
+        <path class="dt-strand dt-spine" id="dt-spinepath" d="M-10.0 111.2 C-7.3 111.7 0.7 113.6 6.0 114.5 C11.3 115.4 16.7 116.1 22.0 116.7 C27.3 117.3 32.7 117.7 38.0 118.1 C43.3 118.5 48.7 118.8 54.0 119.2 C59.3 119.5 64.7 119.9 70.0 120.4 C75.3 120.9 80.7 121.4 86.0 122.1 C91.3 122.9 96.7 123.7 102.0 124.8 C107.3 125.9 112.7 127.1 118.0 128.6 C123.3 130.0 128.7 131.7 134.0 133.4 C139.3 135.2 144.7 137.2 150.0 139.3 C155.3 141.3 160.7 143.5 166.0 145.7 C171.3 147.8 176.7 150.1 182.0 152.1 C187.3 154.2 192.7 156.3 198.0 158.0 C203.3 159.8 208.7 161.5 214.0 162.8 C219.3 164.2 224.7 165.3 230.0 166.0 C235.3 166.7 240.7 167.1 246.0 167.1 C251.3 167.1 256.7 166.7 262.0 166.0 C267.3 165.2 272.7 164.0 278.0 162.6 C283.3 161.1 288.7 159.2 294.0 157.1 C299.3 155.0 304.7 152.6 310.0 150.1 C315.3 147.5 320.7 144.7 326.0 142.0 C331.3 139.2 336.7 136.2 342.0 133.4 C347.3 130.6 352.7 127.7 358.0 125.0 C363.3 122.4 368.7 119.8 374.0 117.4 C379.3 115.1 384.7 112.9 390.0 111.0 C395.3 109.1 400.7 107.5 406.0 106.1 C411.3 104.6 416.7 103.5 422.0 102.6 C427.3 101.6 432.7 100.9 438.0 100.4 C443.3 99.8 448.7 99.5 454.0 99.2 C459.3 98.9 464.7 98.8 470.0 98.7 C475.3 98.5 480.7 98.4 486.0 98.2 C491.3 98.0 496.7 97.8 502.0 97.4 C507.3 97.0 512.7 96.5 518.0 95.8 C523.3 95.2 528.7 94.4 534.0 93.4 C539.3 92.4 544.7 91.3 550.0 90.0 C555.3 88.8 560.7 87.3 566.0 85.9 C571.3 84.4 576.7 82.8 582.0 81.3 C587.3 79.8 592.7 78.3 598.0 76.9 C603.3 75.5 608.7 74.1 614.0 73.0 C619.3 71.9 624.7 70.9 630.0 70.3 C635.3 69.7 640.7 69.3 646.0 69.3 C651.3 69.3 656.7 69.6 662.0 70.3 C667.3 71.0 672.7 72.0 678.0 73.4 C683.3 74.8 688.7 76.6 694.0 78.7 C699.3 80.8 704.7 83.2 710.0 85.8 C715.3 88.4 720.7 91.3 726.0 94.3 C731.3 97.3 736.7 100.5 742.0 103.6 C747.3 106.7 755.3 111.5 758.0 113.0" stroke-width="2.6" opacity="0.85" style="transition-delay:0.66s"/>
+        <path class="dt-strand" d="M-10.0 123.6 C-7.3 124.0 0.7 125.2 6.0 125.8 C11.3 126.4 16.7 126.7 22.0 127.2 C27.3 127.6 32.7 127.9 38.0 128.2 C43.3 128.6 48.7 128.9 54.0 129.5 C59.3 130.0 64.7 130.5 70.0 131.3 C75.3 132.0 80.7 132.9 86.0 134.0 C91.3 135.1 96.7 136.4 102.0 137.8 C107.3 139.3 112.7 141.0 118.0 142.8 C123.3 144.6 128.7 146.6 134.0 148.7 C139.3 150.7 144.7 152.9 150.0 155.1 C155.3 157.2 160.7 159.5 166.0 161.5 C171.3 163.6 176.7 165.6 182.0 167.4 C187.3 169.1 192.7 170.8 198.0 172.1 C203.3 173.4 208.7 174.5 214.0 175.1 C219.3 175.8 224.7 176.2 230.0 176.1 C235.3 176.0 240.7 175.6 246.0 174.8 C251.3 174.0 256.7 172.8 262.0 171.3 C267.3 169.8 272.7 167.8 278.0 165.7 C283.3 163.6 288.7 161.1 294.0 158.6 C299.3 156.0 304.7 153.2 310.0 150.4 C315.3 147.6 320.7 144.7 326.0 141.9 C331.3 139.0 336.7 136.2 342.0 133.5 C347.3 130.9 352.7 128.3 358.0 126.0 C363.3 123.7 368.7 121.5 374.0 119.7 C379.3 117.8 384.7 116.2 390.0 114.8 C395.3 113.4 400.7 112.3 406.0 111.4 C411.3 110.5 416.7 109.8 422.0 109.3 C427.3 108.8 432.7 108.5 438.0 108.2 C443.3 107.9 448.7 107.8 454.0 107.6 C459.3 107.5 464.7 107.4 470.0 107.1 C475.3 106.9 480.7 106.7 486.0 106.3 C491.3 105.9 496.7 105.4 502.0 104.7 C507.3 104.0 512.7 103.2 518.0 102.2 C523.3 101.2 528.7 100.0 534.0 98.8 C539.3 97.5 544.7 96.1 550.0 94.6 C555.3 93.2 560.7 91.6 566.0 90.1 C571.3 88.6 576.7 87.0 582.0 85.6 C587.3 84.2 592.7 82.9 598.0 81.8 C603.3 80.7 608.7 79.8 614.0 79.2 C619.3 78.6 624.7 78.3 630.0 78.3 C635.3 78.3 640.7 78.7 646.0 79.4 C651.3 80.2 656.7 81.3 662.0 82.7 C667.3 84.2 672.7 86.0 678.0 88.1 C683.3 90.2 688.7 92.7 694.0 95.3 C699.3 97.9 704.7 100.9 710.0 103.9 C715.3 106.8 720.7 110.1 726.0 113.2 C731.3 116.3 736.7 119.6 742.0 122.6 C747.3 125.7 755.3 130.0 758.0 131.5" stroke-width="2.0" opacity="0.42" style="transition-delay:0.73s"/>
+        <path class="dt-strand" d="M-10.0 122.0 C-7.3 122.9 0.7 125.5 6.0 126.9 C11.3 128.3 16.7 129.5 22.0 130.6 C27.3 131.6 32.7 132.4 38.0 133.1 C43.3 133.8 48.7 134.2 54.0 134.7 C59.3 135.2 64.7 135.5 70.0 135.8 C75.3 136.2 80.7 136.5 86.0 136.9 C91.3 137.4 96.7 137.8 102.0 138.5 C107.3 139.1 112.7 139.9 118.0 140.8 C123.3 141.8 128.7 142.9 134.0 144.3 C139.3 145.6 144.7 147.1 150.0 148.8 C155.3 150.5 160.7 152.4 166.0 154.4 C171.3 156.3 176.7 158.5 182.0 160.6 C187.3 162.8 192.7 165.0 198.0 167.1 C203.3 169.2 208.7 171.4 214.0 173.3 C219.3 175.2 224.7 177.0 230.0 178.5 C235.3 180.0 240.7 181.3 246.0 182.2 C251.3 183.1 256.7 183.8 262.0 184.0 C267.3 184.2 272.7 184.1 278.0 183.6 C283.3 183.0 288.7 182.1 294.0 180.9 C299.3 179.6 304.7 177.9 310.0 176.0 C315.3 174.1 320.7 171.8 326.0 169.4 C331.3 167.0 336.7 164.3 342.0 161.6 C347.3 158.8 352.7 155.9 358.0 153.1 C363.3 150.2 368.7 147.3 374.0 144.6 C379.3 141.9 384.7 139.2 390.0 136.7 C395.3 134.3 400.7 131.9 406.0 129.9 C411.3 127.8 416.7 126.0 422.0 124.4 C427.3 122.9 432.7 121.6 438.0 120.5 C443.3 119.4 448.7 118.6 454.0 117.9 C459.3 117.3 464.7 116.9 470.0 116.5 C475.3 116.2 480.7 116.0 486.0 115.8 C491.3 115.6 496.7 115.5 502.0 115.3 C507.3 115.2 512.7 115.0 518.0 114.7 C523.3 114.4 528.7 114.0 534.0 113.4 C539.3 112.8 544.7 112.1 550.0 111.3 C555.3 110.4 560.7 109.3 566.0 108.2 C571.3 107.0 576.7 105.6 582.0 104.2 C587.3 102.8 592.7 101.3 598.0 99.8 C603.3 98.3 608.7 96.7 614.0 95.2 C619.3 93.8 624.7 92.3 630.0 91.1 C635.3 89.9 640.7 88.8 646.0 88.0 C651.3 87.2 656.7 86.6 662.0 86.4 C667.3 86.2 672.7 86.3 678.0 86.8 C683.3 87.2 688.7 88.0 694.0 89.2 C699.3 90.4 704.7 92.0 710.0 93.8 C715.3 95.7 720.7 98.0 726.0 100.4 C731.3 102.9 736.7 105.7 742.0 108.5 C747.3 111.4 755.3 116.1 758.0 117.6" stroke-width="1.7" opacity="0.3" style="transition-delay:0.80s"/>
+        <path class="dt-strand" d="M-10.0 142.8 C-7.3 143.0 0.7 143.7 6.0 144.2 C11.3 144.6 16.7 144.9 22.0 145.2 C27.3 145.6 32.7 145.9 38.0 146.5 C43.3 147.0 48.7 147.5 54.0 148.3 C59.3 149.0 64.7 149.9 70.0 151.0 C75.3 152.1 80.7 153.4 86.0 154.8 C91.3 156.3 96.7 158.0 102.0 159.8 C107.3 161.6 112.7 163.6 118.0 165.7 C123.3 167.7 128.7 169.9 134.0 172.1 C139.3 174.2 144.7 176.5 150.0 178.5 C155.3 180.6 160.7 182.6 166.0 184.4 C171.3 186.1 176.7 187.8 182.0 189.1 C187.3 190.4 192.7 191.5 198.0 192.1 C203.3 192.8 208.7 193.2 214.0 193.1 C219.3 193.0 224.7 192.6 230.0 191.8 C235.3 191.0 240.7 189.8 246.0 188.3 C251.3 186.8 256.7 184.8 262.0 182.7 C267.3 180.6 272.7 178.1 278.0 175.6 C283.3 173.0 288.7 170.2 294.0 167.4 C299.3 164.6 304.7 161.7 310.0 158.9 C315.3 156.0 320.7 153.2 326.0 150.5 C331.3 147.9 336.7 145.3 342.0 143.0 C347.3 140.7 352.7 138.5 358.0 136.7 C363.3 134.8 368.7 133.2 374.0 131.8 C379.3 130.4 384.7 129.3 390.0 128.4 C395.3 127.5 400.7 126.8 406.0 126.3 C411.3 125.8 416.7 125.5 422.0 125.2 C427.3 124.9 432.7 124.8 438.0 124.6 C443.3 124.5 448.7 124.4 454.0 124.1 C459.3 123.9 464.7 123.7 470.0 123.3 C475.3 122.9 480.7 122.4 486.0 121.7 C491.3 121.0 496.7 120.2 502.0 119.2 C507.3 118.2 512.7 117.0 518.0 115.8 C523.3 114.5 528.7 113.1 534.0 111.6 C539.3 110.2 544.7 108.6 550.0 107.1 C555.3 105.6 560.7 104.0 566.0 102.6 C571.3 101.2 576.7 99.9 582.0 98.8 C587.3 97.7 592.7 96.8 598.0 96.2 C603.3 95.6 608.7 95.3 614.0 95.3 C619.3 95.3 624.7 95.7 630.0 96.4 C635.3 97.2 640.7 98.3 646.0 99.7 C651.3 101.2 656.7 103.0 662.0 105.1 C667.3 107.2 672.7 109.7 678.0 112.3 C683.3 114.9 688.7 117.9 694.0 120.9 C699.3 123.8 704.7 127.1 710.0 130.2 C715.3 133.3 720.7 136.6 726.0 139.6 C731.3 142.7 736.7 145.7 742.0 148.5 C747.3 151.3 755.3 155.0 758.0 156.3" stroke-width="1.4" opacity="0.2" style="transition-delay:0.87s"/>
       </g>
       <!-- Datenpunkte: jede Quelle, jedes Dokument, jede Revision -->
       <g class="dt-parts">
-        <circle class="dt-el dt-part" r="2.5" opacity="0.44"
-                data-on="translate(117px,109px)" data-off="translate(532px,215px)"
-                style="transform:translate(532px,215px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="2.2" opacity="0.85"
+                data-on="translate(618px,66px)" data-off="translate(476px,38px)"
+                style="transform:translate(476px,38px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="1.9" opacity="0.45"
+                data-on="translate(146px,159px)" data-off="translate(693px,214px)"
+                style="transform:translate(693px,214px);transition-delay:0.03s"/>
+        <circle class="dt-el dt-part" r="2.5" opacity="0.69"
+                data-on="translate(518px,97px)" data-off="translate(70px,198px)"
+                style="transform:translate(70px,198px);transition-delay:0.06s"/>
+        <circle class="dt-el dt-part" r="2.1" opacity="0.73"
+                data-on="translate(132px,131px)" data-off="translate(39px,98px)"
+                style="transform:translate(39px,98px);transition-delay:0.09s"/>
+        <circle class="dt-el dt-part" r="2.0" opacity="0.71"
+                data-on="translate(490px,120px)" data-off="translate(269px,159px)"
+                style="transform:translate(269px,159px);transition-delay:0.12s"/>
+        <circle class="dt-el dt-part" r="1.9" opacity="0.46"
+                data-on="translate(673px,96px)" data-off="translate(672px,93px)"
+                style="transform:translate(672px,93px);transition-delay:0.15s"/>
         <circle class="dt-el dt-part" r="1.4" opacity="0.68"
-                data-on="translate(79px,112px)" data-off="translate(59px,37px)"
-                style="transform:translate(59px,37px);transition-delay:0.03s"/>
-        <circle class="dt-el dt-part" r="1.6" opacity="0.66"
-                data-on="translate(704px,115px)" data-off="translate(108px,88px)"
-                style="transform:translate(108px,88px);transition-delay:0.06s"/>
+                data-on="translate(455px,122px)" data-off="translate(331px,97px)"
+                style="transform:translate(331px,97px);transition-delay:0.18s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.36"
+                data-on="translate(234px,189px)" data-off="translate(536px,190px)"
+                style="transform:translate(536px,190px);transition-delay:0.21s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.63"
+                data-on="translate(258px,158px)" data-off="translate(629px,139px)"
+                style="transform:translate(629px,139px);transition-delay:0.24s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.87"
+                data-on="translate(467px,81px)" data-off="translate(139px,189px)"
+                style="transform:translate(139px,189px);transition-delay:0.27s"/>
+        <circle class="dt-el dt-part" r="1.8" opacity="0.78"
+                data-on="translate(15px,113px)" data-off="translate(296px,38px)"
+                style="transform:translate(296px,38px);transition-delay:0.30s"/>
+        <circle class="dt-el dt-part" r="1.3" opacity="0.73"
+                data-on="translate(668px,47px)" data-off="translate(728px,151px)"
+                style="transform:translate(728px,151px);transition-delay:0.33s"/>
+        <circle class="dt-el dt-part" r="2.8" opacity="0.88"
+                data-on="translate(219px,182px)" data-off="translate(567px,39px)"
+                style="transform:translate(567px,39px);transition-delay:0.36s"/>
+        <circle class="dt-el dt-part" r="1.9" opacity="0.87"
+                data-on="translate(601px,84px)" data-off="translate(680px,199px)"
+                style="transform:translate(680px,199px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.87"
+                data-on="translate(133px,127px)" data-off="translate(626px,55px)"
+                style="transform:translate(626px,55px);transition-delay:0.03s"/>
+        <circle class="dt-el dt-part" r="2.3" opacity="0.68"
+                data-on="translate(650px,79px)" data-off="translate(702px,111px)"
+                style="transform:translate(702px,111px);transition-delay:0.06s"/>
+        <circle class="dt-el dt-part" r="2.8" opacity="0.67"
+                data-on="translate(574px,92px)" data-off="translate(234px,39px)"
+                style="transform:translate(234px,39px);transition-delay:0.09s"/>
+        <circle class="dt-el dt-part" r="1.8" opacity="0.66"
+                data-on="translate(619px,65px)" data-off="translate(148px,176px)"
+                style="transform:translate(148px,176px);transition-delay:0.12s"/>
+        <circle class="dt-el dt-part" r="2.8" opacity="0.48"
+                data-on="translate(254px,170px)" data-off="translate(510px,215px)"
+                style="transform:translate(510px,215px);transition-delay:0.15s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.46"
+                data-on="translate(388px,115px)" data-off="translate(378px,50px)"
+                style="transform:translate(378px,50px);transition-delay:0.18s"/>
+        <circle class="dt-el dt-part" r="1.6" opacity="0.67"
+                data-on="translate(311px,142px)" data-off="translate(730px,211px)"
+                style="transform:translate(730px,211px);transition-delay:0.21s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.84"
+                data-on="translate(126px,129px)" data-off="translate(237px,115px)"
+                style="transform:translate(237px,115px);transition-delay:0.24s"/>
         <circle class="dt-el dt-part" r="2.1" opacity="0.42"
-                data-on="translate(561px,114px)" data-off="translate(390px,34px)"
-                style="transform:translate(390px,34px);transition-delay:0.09s"/>
-        <circle class="dt-el dt-part" r="2.2" opacity="0.6"
-                data-on="translate(445px,105px)" data-off="translate(692px,88px)"
-                style="transform:translate(692px,88px);transition-delay:0.12s"/>
-        <circle class="dt-el dt-part" r="3.2" opacity="0.57"
-                data-on="translate(241px,91px)" data-off="translate(25px,65px)"
-                style="transform:translate(25px,65px);transition-delay:0.15s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.96"
-                data-on="translate(58px,93px)" data-off="translate(232px,160px)"
-                style="transform:translate(232px,160px);transition-delay:0.18s"/>
-        <circle class="dt-el dt-part" r="2.8" opacity="0.45"
-                data-on="translate(454px,89px)" data-off="translate(448px,54px)"
-                style="transform:translate(448px,54px);transition-delay:0.21s"/>
-        <circle class="dt-el dt-part" r="2.4" opacity="0.62"
-                data-on="translate(378px,100px)" data-off="translate(566px,140px)"
-                style="transform:translate(566px,140px);transition-delay:0.24s"/>
-        <circle class="dt-el dt-part" r="3.1" opacity="0.61"
-                data-on="translate(689px,104px)" data-off="translate(253px,155px)"
-                style="transform:translate(253px,155px);transition-delay:0.27s"/>
-        <circle class="dt-el dt-part" r="2.1" opacity="0.44"
-                data-on="translate(258px,124px)" data-off="translate(357px,208px)"
-                style="transform:translate(357px,208px);transition-delay:0.30s"/>
-        <circle class="dt-el dt-part" r="1.6" opacity="0.95"
-                data-on="translate(635px,83px)" data-off="translate(86px,223px)"
-                style="transform:translate(86px,223px);transition-delay:0.33s"/>
-        <circle class="dt-el dt-part" r="2.4" opacity="0.77"
-                data-on="translate(239px,117px)" data-off="translate(231px,37px)"
-                style="transform:translate(231px,37px);transition-delay:0.36s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.56"
-                data-on="translate(659px,108px)" data-off="translate(620px,75px)"
-                style="transform:translate(620px,75px);transition-delay:0.39s"/>
-        <circle class="dt-el dt-part" r="1.4" opacity="0.67"
-                data-on="translate(445px,93px)" data-off="translate(312px,85px)"
-                style="transform:translate(312px,85px);transition-delay:0.00s"/>
-        <circle class="dt-el dt-part" r="3.1" opacity="0.83"
-                data-on="translate(698px,82px)" data-off="translate(269px,34px)"
-                style="transform:translate(269px,34px);transition-delay:0.03s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.63"
-                data-on="translate(134px,103px)" data-off="translate(227px,156px)"
-                style="transform:translate(227px,156px);transition-delay:0.06s"/>
-        <circle class="dt-el dt-part" r="2.1" opacity="0.84"
-                data-on="translate(579px,98px)" data-off="translate(694px,223px)"
-                style="transform:translate(694px,223px);transition-delay:0.09s"/>
-        <circle class="dt-el dt-part" r="3.3" opacity="0.5"
-                data-on="translate(344px,112px)" data-off="translate(534px,148px)"
-                style="transform:translate(534px,148px);transition-delay:0.12s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.4"
-                data-on="translate(211px,106px)" data-off="translate(613px,39px)"
-                style="transform:translate(613px,39px);transition-delay:0.15s"/>
-        <circle class="dt-el dt-part" r="1.7" opacity="0.88"
-                data-on="translate(435px,77px)" data-off="translate(711px,178px)"
-                style="transform:translate(711px,178px);transition-delay:0.18s"/>
-        <circle class="dt-el dt-part" r="3.2" opacity="0.5"
-                data-on="translate(235px,125px)" data-off="translate(173px,205px)"
-                style="transform:translate(173px,205px);transition-delay:0.21s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.74"
-                data-on="translate(404px,118px)" data-off="translate(298px,67px)"
-                style="transform:translate(298px,67px);transition-delay:0.24s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.71"
-                data-on="translate(74px,80px)" data-off="translate(86px,75px)"
-                style="transform:translate(86px,75px);transition-delay:0.27s"/>
-        <circle class="dt-el dt-part" r="2.3" opacity="0.88"
-                data-on="translate(504px,89px)" data-off="translate(159px,30px)"
-                style="transform:translate(159px,30px);transition-delay:0.30s"/>
-        <circle class="dt-el dt-part" r="2.0" opacity="0.92"
-                data-on="translate(607px,113px)" data-off="translate(561px,159px)"
-                style="transform:translate(561px,159px);transition-delay:0.33s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.89"
-                data-on="translate(148px,86px)" data-off="translate(632px,66px)"
-                style="transform:translate(632px,66px);transition-delay:0.36s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.5"
-                data-on="translate(487px,95px)" data-off="translate(224px,110px)"
-                style="transform:translate(224px,110px);transition-delay:0.39s"/>
-        <circle class="dt-el dt-part" r="1.9" opacity="0.58"
-                data-on="translate(464px,114px)" data-off="translate(309px,166px)"
-                style="transform:translate(309px,166px);transition-delay:0.00s"/>
-        <circle class="dt-el dt-part" r="3.3" opacity="0.8"
-                data-on="translate(436px,123px)" data-off="translate(173px,61px)"
-                style="transform:translate(173px,61px);transition-delay:0.03s"/>
-        <circle class="dt-el dt-part" r="1.9" opacity="0.75"
-                data-on="translate(712px,114px)" data-off="translate(158px,213px)"
-                style="transform:translate(158px,213px);transition-delay:0.06s"/>
-        <circle class="dt-el dt-part" r="2.0" opacity="0.99"
-                data-on="translate(550px,87px)" data-off="translate(700px,150px)"
-                style="transform:translate(700px,150px);transition-delay:0.09s"/>
-        <circle class="dt-el dt-part" r="1.6" opacity="0.75"
-                data-on="translate(274px,130px)" data-off="translate(552px,162px)"
-                style="transform:translate(552px,162px);transition-delay:0.12s"/>
-        <circle class="dt-el dt-part" r="1.9" opacity="0.49"
-                data-on="translate(521px,118px)" data-off="translate(170px,143px)"
-                style="transform:translate(170px,143px);transition-delay:0.15s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.44"
-                data-on="translate(476px,100px)" data-off="translate(335px,107px)"
-                style="transform:translate(335px,107px);transition-delay:0.18s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.49"
-                data-on="translate(99px,125px)" data-off="translate(129px,143px)"
-                style="transform:translate(129px,143px);transition-delay:0.21s"/>
-        <circle class="dt-el dt-part" r="2.2" opacity="0.61"
-                data-on="translate(41px,119px)" data-off="translate(554px,77px)"
-                style="transform:translate(554px,77px);transition-delay:0.24s"/>
-        <circle class="dt-el dt-part" r="2.7" opacity="0.9"
-                data-on="translate(127px,97px)" data-off="translate(718px,103px)"
-                style="transform:translate(718px,103px);transition-delay:0.27s"/>
-        <circle class="dt-el dt-part" r="2.0" opacity="0.75"
-                data-on="translate(684px,83px)" data-off="translate(498px,201px)"
-                style="transform:translate(498px,201px);transition-delay:0.30s"/>
-        <circle class="dt-el dt-part" r="1.7" opacity="0.76"
-                data-on="translate(222px,93px)" data-off="translate(502px,48px)"
-                style="transform:translate(502px,48px);transition-delay:0.33s"/>
-        <circle class="dt-el dt-part" r="2.7" opacity="0.4"
-                data-on="translate(50px,126px)" data-off="translate(573px,153px)"
-                style="transform:translate(573px,153px);transition-delay:0.36s"/>
-        <circle class="dt-el dt-part" r="2.7" opacity="0.72"
-                data-on="translate(578px,75px)" data-off="translate(49px,206px)"
-                style="transform:translate(49px,206px);transition-delay:0.39s"/>
-        <circle class="dt-el dt-part" r="3.1" opacity="0.58"
-                data-on="translate(336px,92px)" data-off="translate(605px,57px)"
-                style="transform:translate(605px,57px);transition-delay:0.00s"/>
-        <circle class="dt-el dt-part" r="3.1" opacity="0.83"
-                data-on="translate(710px,117px)" data-off="translate(74px,174px)"
-                style="transform:translate(74px,174px);transition-delay:0.03s"/>
-        <circle class="dt-el dt-part" r="2.7" opacity="0.59"
-                data-on="translate(641px,130px)" data-off="translate(559px,204px)"
-                style="transform:translate(559px,204px);transition-delay:0.06s"/>
-        <circle class="dt-el dt-part" r="1.5" opacity="0.53"
-                data-on="translate(529px,114px)" data-off="translate(543px,98px)"
-                style="transform:translate(543px,98px);transition-delay:0.09s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="1.0"
-                data-on="translate(43px,108px)" data-off="translate(624px,82px)"
-                style="transform:translate(624px,82px);transition-delay:0.12s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.91"
-                data-on="translate(252px,125px)" data-off="translate(662px,47px)"
-                style="transform:translate(662px,47px);transition-delay:0.15s"/>
-        <circle class="dt-el dt-part" r="2.4" opacity="0.99"
-                data-on="translate(450px,91px)" data-off="translate(646px,96px)"
-                style="transform:translate(646px,96px);transition-delay:0.18s"/>
-        <circle class="dt-el dt-part" r="2.7" opacity="0.68"
-                data-on="translate(505px,102px)" data-off="translate(685px,218px)"
-                style="transform:translate(685px,218px);transition-delay:0.21s"/>
-        <circle class="dt-el dt-part" r="1.8" opacity="0.55"
-                data-on="translate(415px,112px)" data-off="translate(283px,109px)"
-                style="transform:translate(283px,109px);transition-delay:0.24s"/>
-        <circle class="dt-el dt-part" r="1.8" opacity="0.6"
-                data-on="translate(347px,77px)" data-off="translate(387px,62px)"
-                style="transform:translate(387px,62px);transition-delay:0.27s"/>
-        <circle class="dt-el dt-part" r="1.9" opacity="0.6"
-                data-on="translate(197px,82px)" data-off="translate(539px,88px)"
-                style="transform:translate(539px,88px);transition-delay:0.30s"/>
-        <circle class="dt-el dt-part" r="2.2" opacity="0.94"
-                data-on="translate(159px,110px)" data-off="translate(492px,126px)"
-                style="transform:translate(492px,126px);transition-delay:0.33s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.82"
-                data-on="translate(112px,78px)" data-off="translate(79px,116px)"
-                style="transform:translate(79px,116px);transition-delay:0.36s"/>
-        <circle class="dt-el dt-part" r="2.8" opacity="0.8"
-                data-on="translate(179px,87px)" data-off="translate(92px,139px)"
-                style="transform:translate(92px,139px);transition-delay:0.39s"/>
-        <circle class="dt-el dt-part" r="2.1" opacity="0.93"
-                data-on="translate(484px,82px)" data-off="translate(317px,189px)"
-                style="transform:translate(317px,189px);transition-delay:0.00s"/>
-        <circle class="dt-el dt-part" r="3.3" opacity="0.53"
-                data-on="translate(570px,114px)" data-off="translate(369px,65px)"
-                style="transform:translate(369px,65px);transition-delay:0.03s"/>
-        <circle class="dt-el dt-part" r="3.4" opacity="0.69"
-                data-on="translate(293px,80px)" data-off="translate(642px,178px)"
-                style="transform:translate(642px,178px);transition-delay:0.06s"/>
-        <circle class="dt-el dt-part" r="2.5" opacity="0.67"
-                data-on="translate(36px,121px)" data-off="translate(472px,102px)"
-                style="transform:translate(472px,102px);transition-delay:0.09s"/>
-        <circle class="dt-el dt-part" r="2.6" opacity="0.53"
-                data-on="translate(724px,114px)" data-off="translate(332px,81px)"
-                style="transform:translate(332px,81px);transition-delay:0.12s"/>
-        <circle class="dt-el dt-part" r="2.1" opacity="0.74"
-                data-on="translate(564px,85px)" data-off="translate(135px,116px)"
-                style="transform:translate(135px,116px);transition-delay:0.15s"/>
+                data-on="translate(576px,81px)" data-off="translate(280px,34px)"
+                style="transform:translate(280px,34px);transition-delay:0.27s"/>
+        <circle class="dt-el dt-part" r="2.4" opacity="0.63"
+                data-on="translate(658px,53px)" data-off="translate(691px,159px)"
+                style="transform:translate(691px,159px);transition-delay:0.30s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.75"
+                data-on="translate(427px,79px)" data-off="translate(705px,160px)"
+                style="transform:translate(705px,160px);transition-delay:0.33s"/>
+        <circle class="dt-el dt-part" r="2.8" opacity="0.68"
+                data-on="translate(486px,80px)" data-off="translate(86px,193px)"
+                style="transform:translate(86px,193px);transition-delay:0.36s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.69"
+                data-on="translate(109px,126px)" data-off="translate(407px,71px)"
+                style="transform:translate(407px,71px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="2.4" opacity="0.8"
+                data-on="translate(459px,99px)" data-off="translate(184px,100px)"
+                style="transform:translate(184px,100px);transition-delay:0.03s"/>
+        <circle class="dt-el dt-part" r="2.2" opacity="0.68"
+                data-on="translate(291px,154px)" data-off="translate(198px,168px)"
+                style="transform:translate(198px,168px);transition-delay:0.06s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.5"
+                data-on="translate(509px,93px)" data-off="translate(354px,171px)"
+                style="transform:translate(354px,171px);transition-delay:0.09s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.56"
+                data-on="translate(253px,180px)" data-off="translate(447px,208px)"
+                style="transform:translate(447px,208px);transition-delay:0.12s"/>
+        <circle class="dt-el dt-part" r="2.9" opacity="0.67"
+                data-on="translate(55px,110px)" data-off="translate(442px,67px)"
+                style="transform:translate(442px,67px);transition-delay:0.15s"/>
+        <circle class="dt-el dt-part" r="1.6" opacity="0.4"
+                data-on="translate(455px,102px)" data-off="translate(681px,138px)"
+                style="transform:translate(681px,138px);transition-delay:0.18s"/>
+        <circle class="dt-el dt-part" r="1.3" opacity="0.69"
+                data-on="translate(600px,55px)" data-off="translate(513px,74px)"
+                style="transform:translate(513px,74px);transition-delay:0.21s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.8"
+                data-on="translate(543px,77px)" data-off="translate(213px,117px)"
+                style="transform:translate(213px,117px);transition-delay:0.24s"/>
+        <circle class="dt-el dt-part" r="2.6" opacity="0.62"
+                data-on="translate(657px,50px)" data-off="translate(490px,151px)"
+                style="transform:translate(490px,151px);transition-delay:0.27s"/>
         <circle class="dt-el dt-part" r="1.9" opacity="0.85"
-                data-on="translate(253px,80px)" data-off="translate(72px,96px)"
-                style="transform:translate(72px,96px);transition-delay:0.18s"/>
-        <circle class="dt-el dt-part" r="3.4" opacity="0.83"
-                data-on="translate(156px,84px)" data-off="translate(701px,212px)"
-                style="transform:translate(701px,212px);transition-delay:0.21s"/>
-        <circle class="dt-el dt-part" r="3.0" opacity="0.43"
-                data-on="translate(187px,78px)" data-off="translate(702px,58px)"
-                style="transform:translate(702px,58px);transition-delay:0.24s"/>
-        <circle class="dt-el dt-part" r="2.1" opacity="0.54"
-                data-on="translate(189px,87px)" data-off="translate(299px,73px)"
-                style="transform:translate(299px,73px);transition-delay:0.27s"/>
-        <circle class="dt-el dt-part" r="2.9" opacity="0.77"
-                data-on="translate(663px,88px)" data-off="translate(123px,192px)"
-                style="transform:translate(123px,192px);transition-delay:0.30s"/>
-        <circle class="dt-el dt-part" r="2.9" opacity="0.51"
-                data-on="translate(218px,132px)" data-off="translate(468px,79px)"
-                style="transform:translate(468px,79px);transition-delay:0.33s"/>
-        <circle class="dt-el dt-part" r="2.0" opacity="0.67"
-                data-on="translate(221px,90px)" data-off="translate(134px,190px)"
-                style="transform:translate(134px,190px);transition-delay:0.36s"/>
-        <circle class="dt-el dt-part" r="2.8" opacity="0.59"
-                data-on="translate(544px,112px)" data-off="translate(696px,169px)"
-                style="transform:translate(696px,169px);transition-delay:0.39s"/>
+                data-on="translate(62px,119px)" data-off="translate(406px,57px)"
+                style="transform:translate(406px,57px);transition-delay:0.30s"/>
+        <circle class="dt-el dt-part" r="2.7" opacity="0.73"
+                data-on="translate(341px,146px)" data-off="translate(650px,182px)"
+                style="transform:translate(650px,182px);transition-delay:0.33s"/>
+        <circle class="dt-el dt-part" r="2.1" opacity="0.8"
+                data-on="translate(157px,141px)" data-off="translate(261px,34px)"
+                style="transform:translate(261px,34px);transition-delay:0.36s"/>
+        <circle class="dt-el dt-part" r="2.2" opacity="0.6"
+                data-on="translate(328px,159px)" data-off="translate(429px,89px)"
+                style="transform:translate(429px,89px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.38"
+                data-on="translate(186px,144px)" data-off="translate(55px,169px)"
+                style="transform:translate(55px,169px);transition-delay:0.03s"/>
+        <circle class="dt-el dt-part" r="1.5" opacity="0.43"
+                data-on="translate(522px,98px)" data-off="translate(364px,31px)"
+                style="transform:translate(364px,31px);transition-delay:0.06s"/>
+        <circle class="dt-el dt-part" r="2.6" opacity="0.67"
+                data-on="translate(249px,145px)" data-off="translate(240px,133px)"
+                style="transform:translate(240px,133px);transition-delay:0.09s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.5"
+                data-on="translate(474px,106px)" data-off="translate(165px,60px)"
+                style="transform:translate(165px,60px);transition-delay:0.12s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.86"
+                data-on="translate(214px,164px)" data-off="translate(716px,75px)"
+                style="transform:translate(716px,75px);transition-delay:0.15s"/>
+        <circle class="dt-el dt-part" r="1.8" opacity="0.57"
+                data-on="translate(337px,124px)" data-off="translate(331px,48px)"
+                style="transform:translate(331px,48px);transition-delay:0.18s"/>
+        <circle class="dt-el dt-part" r="1.7" opacity="0.81"
+                data-on="translate(383px,108px)" data-off="translate(88px,166px)"
+                style="transform:translate(88px,166px);transition-delay:0.21s"/>
+        <circle class="dt-el dt-part" r="1.8" opacity="0.59"
+                data-on="translate(467px,80px)" data-off="translate(615px,63px)"
+                style="transform:translate(615px,63px);transition-delay:0.24s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.86"
+                data-on="translate(704px,93px)" data-off="translate(399px,124px)"
+                style="transform:translate(399px,124px);transition-delay:0.27s"/>
+        <circle class="dt-el dt-part" r="2.3" opacity="0.84"
+                data-on="translate(343px,130px)" data-off="translate(105px,204px)"
+                style="transform:translate(105px,204px);transition-delay:0.30s"/>
+        <circle class="dt-el dt-part" r="2.3" opacity="0.64"
+                data-on="translate(266px,160px)" data-off="translate(517px,60px)"
+                style="transform:translate(517px,60px);transition-delay:0.33s"/>
+        <circle class="dt-el dt-part" r="2.7" opacity="0.74"
+                data-on="translate(251px,186px)" data-off="translate(286px,213px)"
+                style="transform:translate(286px,213px);transition-delay:0.36s"/>
+        <circle class="dt-el dt-part" r="2.4" opacity="0.46"
+                data-on="translate(284px,141px)" data-off="translate(663px,168px)"
+                style="transform:translate(663px,168px);transition-delay:0.00s"/>
+        <circle class="dt-el dt-part" r="1.4" opacity="0.54"
+                data-on="translate(283px,170px)" data-off="translate(494px,47px)"
+                style="transform:translate(494px,47px);transition-delay:0.03s"/>
+        <circle class="dt-el dt-part" r="1.6" opacity="0.6"
+                data-on="translate(154px,147px)" data-off="translate(322px,119px)"
+                style="transform:translate(322px,119px);transition-delay:0.06s"/>
+        <circle class="dt-el dt-part" r="2.2" opacity="0.67"
+                data-on="translate(327px,125px)" data-off="translate(720px,131px)"
+                style="transform:translate(720px,131px);transition-delay:0.09s"/>
+        <circle class="dt-el dt-part" r="1.6" opacity="0.89"
+                data-on="translate(675px,70px)" data-off="translate(43px,131px)"
+                style="transform:translate(43px,131px);transition-delay:0.12s"/>
+        <circle class="dt-el dt-part" r="1.8" opacity="0.6"
+                data-on="translate(719px,106px)" data-off="translate(39px,95px)"
+                style="transform:translate(39px,95px);transition-delay:0.15s"/>
+      </g>
+      <!-- benannte Systeme: Knoten auf dem Thread (bewusst nur eine Auswahl) -->
+      <g class="dt-sys">
+        <g class="dt-el dt-node"
+           data-on="translate(42px,118px)" data-off="translate(526px,196px)"
+           style="transform:translate(526px,196px);transition-delay:0.000s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">PLM</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(108px,126px)" data-off="translate(354px,128px)"
+           style="transform:translate(354px,128px);transition-delay:0.045s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">CAD</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(172px,148px)" data-off="translate(296px,186px)"
+           style="transform:translate(296px,186px);transition-delay:0.090s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">ERP</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(238px,167px)" data-off="translate(599px,92px)"
+           style="transform:translate(599px,92px);transition-delay:0.135s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">PDM</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(302px,154px)" data-off="translate(669px,140px)"
+           style="transform:translate(669px,140px);transition-delay:0.180s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">MES</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(368px,120px)" data-off="translate(78px,170px)"
+           style="transform:translate(78px,170px);transition-delay:0.225s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="-34" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">SCM</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(434px,101px)" data-off="translate(389px,44px)"
+           style="transform:translate(389px,44px);transition-delay:0.270s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">QMS</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(498px,98px)" data-off="translate(149px,122px)"
+           style="transform:translate(149px,122px);transition-delay:0.000s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">LIMS</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(560px,88px)" data-off="translate(251px,129px)"
+           style="transform:translate(251px,129px);transition-delay:0.045s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">CRM</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(622px,71px)" data-off="translate(181px,62px)"
+           style="transform:translate(181px,62px);transition-delay:0.090s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">IoT</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(682px,75px)" data-off="translate(713px,89px)"
+           style="transform:translate(713px,89px);transition-delay:0.135s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">MRO</text>
+        </g>
+        <g class="dt-el dt-node"
+           data-on="translate(736px,100px)" data-off="translate(272px,70px)"
+           style="transform:translate(272px,70px);transition-delay:0.180s">
+          <circle class="dt-ring" r="6.5"/>
+          <circle class="dt-core" r="2.6"/>
+          <text class="dt-lab mono" x="0" y="40" text-anchor="middle" font-size="8.5" letter-spacing=".9" paint-order="stroke" stroke="#172226" stroke-width="3.5">WMS</text>
+        </g>
       </g>
 
-      <!-- der Thread selbst -->
-      <path class="dt-thread" d="M30 105 H730" fill="none" stroke="url(#dtThread)" stroke-width="2.6" stroke-linecap="round"/>
-      <g class="dt-pkt-row" fill="#CFF6FF">
-        <circle class="dt-pkt" cx="30" cy="105" r="3.4" style="animation-delay:0s"/>
-        <circle class="dt-pkt" cx="30" cy="105" r="3.4" style="animation-delay:.9s"/>
-        <circle class="dt-pkt" cx="30" cy="105" r="3.4" style="animation-delay:1.8s"/>
-        <circle class="dt-pkt" cx="30" cy="105" r="3.4" style="animation-delay:2.7s"/>
+      <!-- Content, der über den Thread fließt -->
+      <g class="dt-pkt-row" fill="#DFF8FF">
+        <circle class="dt-pkt" r="3.2">
+          <animateMotion dur="7s" repeatCount="indefinite" begin="0s"><mpath href="#dt-spinepath"/></animateMotion>
+        </circle>
+        <circle class="dt-pkt" r="3.2">
+          <animateMotion dur="7s" repeatCount="indefinite" begin="1.75s"><mpath href="#dt-spinepath"/></animateMotion>
+        </circle>
+        <circle class="dt-pkt" r="3.2">
+          <animateMotion dur="7s" repeatCount="indefinite" begin="3.5s"><mpath href="#dt-spinepath"/></animateMotion>
+        </circle>
+        <circle class="dt-pkt" r="3.2">
+          <animateMotion dur="7s" repeatCount="indefinite" begin="5.25s"><mpath href="#dt-spinepath"/></animateMotion>
+        </circle>
       </g>
 
       <!-- Lebenszyklus-Achse, erscheint erst im verbundenen Zustand -->
