@@ -1,7 +1,8 @@
 # ICX Pitch — Story-Bogen
 
-Arbeitsstand nach den Änderungen an s0q / s0dt / s4. Vorschlag, keine
-umgesetzte Änderung: die Slides liegen noch in der alten Reihenfolge.
+Arbeitsstand nach den Änderungen an s0q / s0dt / s4. Vorschlag —
+umgesetzt ist bisher nur Eingriff 3.3 (s0h2 vor s4f), der Rest der
+Reihenfolge steht noch wie gehabt.
 
 ---
 
@@ -105,11 +106,11 @@ Behauptung. Nach `s0dt` und `s4` ist sie **bewiesen** — der Saal hat das
 vollständige Bild gerade gesehen und gesehen, warum niemand drankommt.
 Dieselben Worte, ungleich mehr Gewicht.
 
-### 3.3 `s0h2` vor `s4f` statt dahinter
+### 3.3 `s0h2` vor `s4f` statt dahinter — ✅ umgesetzt
 Akt 2 sollte wie Akt 1 aufgebaut sein: erst der emotionale Satz, dann die
 Analyse. „Every change makes your product better, but your company slower"
-eröffnet den Akt, `s4f` belegt ihn. Aktuell ist es umgekehrt und der starke
-Satz verpufft als Nachklapp.
+eröffnet den Akt, `s4f` belegt ihn. Vorher war es umgekehrt und der starke
+Satz verpuffte als Nachklapp.
 
 ### 3.4 Die Dreifachnennung derselben Pointe auflösen
 Drei Slides sagen im Kern dasselbe:
