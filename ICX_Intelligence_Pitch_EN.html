@@ -37,7 +37,11 @@ Neue Struktur (Suchzeit-Narrativ):
           Agent-Feed synchron; Schritt 6 = vorbereitete Aktionen mit
           Freigabe-Buttons; KG-Accordion als Punchline (s7 aufgelöst)
   danach: s7b,s7g,s7a,s8,s8b,s9d,sbc,s10, scod (Cost-of-Delay-Counter,
-          live aus window.BC), scta (90-Tage-Spike), [Anhang] s2, s2e, sobj
+          live aus window.BC), scta (90-Tage-Spike),
+          sask (der konkrete Ask: Rollen, Stunden, Zugriff, Entscheidungen
+          — letzte Slide vor dem Anhang; Zahlen sind Annahmen und vor der
+          Nutzung gegen den realen Pilot-Zuschnitt zu prüfen),
+          [Anhang] s2, s2e, sobj
   Akt-Pivots: Strip Ende s5 (ein Prozess → Muster), Strip Ende s6
           (kein ECO-Tool → erste Frage an den Graphen)
 State: window.BC = {eng,pct,fte,avg,salaries,hours,ecos,perEco}
@@ -1449,6 +1453,54 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
   <div class="fade-in mono" style="margin-top:18px;font-size:9px;letter-spacing:.08em;color:#465158;text-transform:uppercase;text-align:center">Basis: 61% information logistics × your total salary in the ECO process · computed on working time (220 days × 8 h)</div>
   <div class="closer fade-in" style="margin-top:44px;text-align:center">The question is not whether your engineers search — we have measured that.<br><span style="color:#FF2453">The question is whether they will still be doing it next year.</span></div>
 </section>
+<!-- SASK · DER KONKRETE ASK AN DEN EXECUTIVE -->
+<section class="slide" id="sask">
+  <div class="label fade-in">The Ask &middot; What a Pilot Needs From Your Side</div>
+  <h2 class="h2 fade-in" style="margin-bottom:8px">Six names. Ten person-days.<br><span class="cy">Twelve weeks to a measured answer.</span></h2>
+  <p class="body fade-in" style="max-width:820px">Everything else is on us. Here is the whole ask &mdash; in roles and hours.</p>
+
+  <div class="fade-in" style="margin-top:16px;display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px">
+    <div style="padding:16px 20px;background:#172226;border:1px solid #233133;border-radius:10px;border-top:2px solid #00BDE3">
+      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#00BDE3;text-transform:uppercase">The people I need</div>
+      <div style="margin-top:14px;font-size:12.5px;color:#C6D2D8;line-height:1.5"><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="mono" style="color:#00BDE3;font-size:10px;float:right;margin-left:10px">1 h / month</span><span class="hi">Executive sponsor</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">You. Clears access, chairs the go/no-go.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="mono" style="color:#00BDE3;font-size:10px;float:right;margin-left:10px">2 h / week</span><span class="hi">Use-case owner</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Owns the change process. Decides what a good answer is.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="mono" style="color:#00BDE3;font-size:10px;float:right;margin-left:10px">1 day each</span><span class="hi">Three system contacts</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">PLM, ERP, quality. Front-loaded in the first two weeks.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="mono" style="color:#00BDE3;font-size:10px;float:right;margin-left:10px">2 h, once</span><span class="hi">Security &amp; architecture</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">One review of the access concept.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="mono" style="color:#00BDE3;font-size:10px;float:right;margin-left:10px">1 h / week from&nbsp;W6</span><span class="hi">Three to five engineers</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Try it, tell us where it is wrong.</div></div></div>
+    </div>
+    <div style="padding:16px 20px;background:#172226;border:1px solid #233133;border-radius:10px;border-top:2px solid #00BDE3">
+      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#00BDE3;text-transform:uppercase">The access I need</div>
+      <div style="margin-top:14px;font-size:12.5px;color:#C6D2D8;line-height:1.5"><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">Read-only</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">No writes, no migration, no schema change in your systems.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">One slice, not everything</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">One product line, one site, twelve months of change records.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">Stays inside your boundary</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Deployed in your tenant. No data leaves it, no model trains on it.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">Reversible at any point</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Switch it off and your systems are exactly as they were.</div></div></div>
+    </div>
+    <div style="padding:16px 20px;background:#172226;border:1px solid #233133;border-radius:10px;border-top:2px solid #FF2453">
+      <div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#FF2453;text-transform:uppercase">The decisions only you can make</div>
+      <div style="margin-top:14px;font-size:12.5px;color:#C6D2D8;line-height:1.5"><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">The use case</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Engineering change — unless you name one that hurts more.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">The scope</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Which product line, which site.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">The success criterion</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">Agreed before we start: time-to-answer on ten real questions, against today&rsquo;s baseline.</div></div><div style="padding:5px 0;border-top:1px solid #1E2A2E"><span class="hi">The date</span><div style="color:#7A7D85;font-size:11.5px;line-height:1.5;margin-top:2px">A go/no-go in week 12. In your calendar before we leave the room.</div></div></div>
+    </div>
+  </div>
+
+  <div class="fade-in" style="margin-top:12px;padding:13px 20px;background:#172226;border:1px solid #233133;border-radius:10px">
+    <div style="display:flex;gap:22px;flex-wrap:wrap">
+      <div style="flex:1;min-width:150px">
+        <div class="mono" style="font-size:9px;letter-spacing:.12em;color:#00BDE3">WEEK 0&ndash;2</div>
+        <div style="font-size:12.5px;color:#C6D2D8;margin-top:6px;line-height:1.5">Scope agreed, read-only access in place.</div>
+      </div><div style="flex:1;min-width:150px">
+        <div class="mono" style="font-size:9px;letter-spacing:.12em;color:#00BDE3">WEEK 3&ndash;6</div>
+        <div style="font-size:12.5px;color:#C6D2D8;margin-top:6px;line-height:1.5">The graph stands on your slice. First questions answerable.</div>
+      </div><div style="flex:1;min-width:150px">
+        <div class="mono" style="font-size:9px;letter-spacing:.12em;color:#00BDE3">WEEK 7&ndash;10</div>
+        <div style="font-size:12.5px;color:#C6D2D8;margin-top:6px;line-height:1.5">Agents on the three workflows that cost you the most.</div>
+      </div><div style="flex:1;min-width:150px">
+        <div class="mono" style="font-size:9px;letter-spacing:.12em;color:#00BDE3">WEEK 12</div>
+        <div style="font-size:12.5px;color:#C6D2D8;margin-top:6px;line-height:1.5">Go/no-go &mdash; on measured numbers, not on impressions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fade-in" style="margin-top:12px;padding:15px 24px;border-radius:10px;background:linear-gradient(135deg,#00BDE314,transparent);border:1px solid #00BDE344;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="font-size:15px;font-weight:500;color:#C6D2D8;line-height:1.5">What I need from you today is one sentence:<br><span class="cy">who owns this, and on which product line.</span></div>
+    <div style="text-align:right;flex-shrink:0">
+      <div class="serif" style="font-size:34px;color:#00BDE3;line-height:1">&asymp; 10 days</div>
+      <div style="font-size:9.5px;color:#7A7D85;margin-top:4px">of your organisation&rsquo;s time &mdash; spread over twelve weeks</div>
+    </div>
+  </div>
+</section>
+
 <!-- ANHANG MARKER -->
 <section class="slide slide--center" id="anhang-marker">
   <div class="label fade-in" style="color:#555B6E">Appendix</div>
@@ -4190,7 +4242,7 @@ function toggleObj(btn){
   if(!secs.length) return;
   const ACT = {s0q:1,s0dt:1,s0:1,s0p:1,s4:1,s4f:1,s0h2:1,s2:1,s3:1,s5:1,s6:1,
                s7b:2,s7g:2,s7a:2,s8:2,s8b:2,
-               s9d:3,sbc:3,s10:3, scod:4, scta:4, 'anhang-marker':5,s2:5,stech:5,sont:5,sgq:5,sperf:5,sgrd:5,sconf:5,s8s:5,s2e:5,sobj:5};
+               s9d:3,sbc:3,s10:3, scod:4, scta:4, sask:4, 'anhang-marker':5,s2:5,stech:5,sont:5,sgq:5,sperf:5,sgrd:5,sconf:5,s8s:5,s2e:5,sobj:5};
   const ACTNAME = {1:'The Evidence', 2:'The Platform', 3:'The Value', 4:'The Next Step', 5:'Appendix'};
   const bar = document.createElement('div'); bar.id = 'navprog'; document.body.appendChild(bar);
   const ind = document.createElement('div'); ind.id = 'navind'; document.body.appendChild(ind);

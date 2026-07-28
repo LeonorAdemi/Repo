@@ -87,7 +87,8 @@ weil sie nicht belegbar ist.)
 |---|---|---|
 | 18 | `scta` | In drei Schritten zum messbaren Ergebnis. |
 | 19 | `scod` | Die teuerste Option in diesem Raum: warten. |
-| 20 | *(neu)* | Rückgriff auf Jobs: ihr habt den Content nicht vergessen — lasst ihn nicht unerreichbar. |
+| 20 | `sask` | ✅ Der konkrete Ask: sechs Namen, zehn Personentage, zwölf Wochen. Letzte Slide vor dem Anhang. |
+| 21 | *(offen)* | Rückgriff auf Jobs: ihr habt den Content nicht vergessen — lasst ihn nicht unerreichbar. |
 
 ---
 
