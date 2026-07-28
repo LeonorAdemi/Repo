@@ -255,6 +255,14 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
 .fade-in.visible .be-line{stroke-dashoffset:0}
 .s4f-el{opacity:0;transition:opacity .35s ease}
 .fade-in.visible .s4f-el{opacity:1}
+/* ── S0Q · Porträt neben dem Zitat ── */
+.q-portrait{width:128px;height:128px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  border:1px solid #33474B;box-shadow:0 0 0 6px #0F1619,0 0 26px #00000066;
+  background:#141E23;object-fit:cover;object-position:center 22%}
+img.q-portrait{filter:grayscale(1) contrast(1.06) brightness(.94)}
+.q-portrait--empty{position:relative;display:flex;align-items:center;justify-content:center}
+.q-portrait--empty svg{width:82px;height:82px;opacity:.55;margin-top:8px}
+.q-portrait--empty .mono{position:absolute;bottom:16px;font-size:7.5px;letter-spacing:.18em;color:#4E5A61}
 /* ── S0DT DIGITAL THREAD · lose Enden → ein Geflecht ── */
 #dt-stage .dt-el{transition:transform 1.25s cubic-bezier(.62,0,.3,1)}
 #dt-stage .dt-part{fill:#46585F;transition:transform 1.25s cubic-bezier(.62,0,.3,1),fill .9s ease}
@@ -374,8 +382,27 @@ body{background:#0F1619;color:#EAF3F7;font-family:'Siemens Sans','Inter',system-
 <!-- S0Q OPENER · STEVE JOBS ZITAT (Prozess vs. Content) -->
 <section class="slide slide--center" id="s0q">
   <div class="label fade-in">The Starting Point</div>
-  <div class="fade-in serif" style="font-size:clamp(60px,9vw,110px);line-height:.6;color:#FF2453;opacity:.5">&ldquo;</div>
-  <blockquote class="fade-in serif" style="margin-top:18px;font-size:clamp(28px,3.6vw,46px);font-weight:400;line-height:1.34;letter-spacing:-.01em;max-width:900px">People get very confused that <span class="red">the process is the content</span>.</blockquote>
+  <!-- ═══ PORTRÄT ═══════════════════════════════════════════════════════════
+       Hier ein LIZENZIERTES Foto einsetzen. Der Rahmen unten ist nur ein
+       Platzhalter (generische Silhouette, kein Abbild einer realen Person).
+       Ersetzen durch:
+         <img class="q-portrait fade-in" src="jobs.jpg" alt="Steve Jobs">
+       Datei neben das HTML legen — oder als data:-URI einbetten, damit das
+       Deck eine eigenständige Datei bleibt:
+         <img class="q-portrait fade-in" src="data:image/jpeg;base64,…" alt="Steve Jobs">
+       Das CSS färbt jedes Foto automatisch in den dunklen Look ein
+       (Graustufen + leichter Cyan-Ring), Zuschnitt passiert per object-fit.
+       Rechte: Pressefotos von Steve Jobs sind durchgehend lizenzpflichtig
+       (Getty, Magnum, AP …). Ohne Lizenz nicht in ein Kundendeck.
+       ══════════════════════════════════════════════════════════════════════ -->
+  <div class="q-portrait q-portrait--empty fade-in" role="img" aria-label="Platzhalter f&uuml;r ein lizenziertes Portr&auml;t">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="37" r="17" fill="#33454C"/>
+      <path d="M50 59c-17 0-29 11-31 28a1 1 0 0 0 1 1h60a1 1 0 0 0 1-1c-2-17-14-28-31-28z" fill="#33454C"/>
+    </svg>
+    <span class="mono">PORTRAIT</span>
+  </div>
+  <blockquote class="fade-in serif" style="margin-top:30px;font-size:clamp(28px,3.6vw,46px);font-weight:400;line-height:1.34;letter-spacing:-.01em;max-width:900px">People get very confused that <span class="red">the process is the content</span>.</blockquote>
   <p class="fade-in" style="margin-top:30px;font-size:15px;color:#7A7D85;line-height:1.8;max-width:700px">&bdquo;When companies get bigger, they try to replicate their initial success. And a lot of them think there is some magic in the <span class="hi">process</span> of how that success was created. So they start to institutionalize process across the company. And before very long, people get very confused that the process is the content. &hellip; They just <span class="hi">forgot about the content</span>.&ldquo;</p>
   <div class="fade-in mono" style="margin-top:26px;font-size:10px;letter-spacing:.14em;color:#465158;text-transform:uppercase">Steve Jobs &middot; Interview, 1995</div>
   <div class="si-gradbar fade-in" style="margin-top:38px;max-width:120px"></div>
