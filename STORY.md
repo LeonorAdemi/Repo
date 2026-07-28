@@ -140,8 +140,8 @@ Bild in drei Zuständen. Das gibt dem Pitch buchstäblich ein Rückgrat:
 
 | Zustand | Wo | Was man sieht |
 |---|---|---|
-| 1 | `s0dt` | Lose Enden → ein geflochtener Thread. Cyan, ruhig. |
-| 2 | `s4` | Derselbe Thread, vier Knoten leuchten, sechs Beziehungen als **rot gestrichelte** Bögen: die Antwort, die es nicht gibt. |
+| 1 | `s0dt` | Lose Enden → **PLM als Rückgrat**, zehn Systeme docken über Rippen an. Cyan, ruhig. |
+| 2 | `s4` | Dasselbe Rückgrat, vier angedockte Systeme leuchten, sechs Beziehungen als **rot gestrichelte** Bögen quer durch das Rückgrat: die Antwort, die es nicht gibt. |
 | 3 | *(neu, nach `s6` oder als Schluss)* | Dieselben sechs Bögen — **durchgezogen, cyan, pulsierend**. Kein neues Bild, keine neue Erklärung: der Saal sieht in einer Sekunde, was sich geändert hat. |
 
 Zustand 3 ist technisch fast geschenkt: dieselbe Geometrie, andere
